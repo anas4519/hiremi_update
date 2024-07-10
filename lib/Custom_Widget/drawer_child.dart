@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hiremi_version_two/Edit_Profile_Section/BasicDetails/AddBasicDetails.dart';
 import 'package:hiremi_version_two/about_us.dart';
 
 import 'package:percent_indicator/circular_percent_indicator.dart';
@@ -72,7 +73,7 @@ class DrawerChild extends StatelessWidget {
                     SizedBox(height: screenHeight * 0.005),
                     ElevatedButton(
                       onPressed: () {
-                        // Navigator.of(context).push(MaterialPageRoute(builder: (ctx)=>const VerificationScreen()));
+                        Navigator.of(context).push(MaterialPageRoute(builder: (ctx)=>const AddBasicDetails()));
                       },
                       style: ButtonStyle(
                         foregroundColor:
