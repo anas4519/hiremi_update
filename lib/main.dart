@@ -1,15 +1,9 @@
 import 'package:flutter/material.dart';
-
-import 'package:hiremi_version_two/Custom_Widget/Verifiedtrue.dart';
-import 'package:hiremi_version_two/Notofication_screen.dart';
+import 'package:hiremi_version_two/HomePage.dart';
 import 'package:hiremi_version_two/bottomnavigationbar.dart';
-import 'package:hiremi_version_two/FirstLandingPage.dart';
+import 'package:hiremi_version_two/verified_page.dart';
+import 'SplashScreen.dart';
 
-import 'package:hiremi_version_two/Login.dart';
-
-import 'package:hiremi_version_two/Profile_Screen.dart';
-import 'package:hiremi_version_two/SeceondLandingpage.dart';
-import 'package:hiremi_version_two/SplashScreen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -23,8 +17,18 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
+      theme: ThemeData(
+        drawerTheme: const DrawerThemeData(
+          backgroundColor: Colors.white
+        ),
+        appBarTheme: const AppBarTheme(
+          backgroundColor: Colors.white
+        ),
+        scaffoldBackgroundColor: Colors.white
+      ),
 
-      home: SplashScreen(),
+      home: SplashScreen()
+      
     );
   }
 }
@@ -53,11 +57,11 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: Center(
-        child: const Column(
+      body: const Center(
+        child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            const Text(
+            Text(
               'You have pushed the button this many times:',
             ),
 

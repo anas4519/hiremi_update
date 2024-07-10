@@ -174,7 +174,7 @@ class _LogInState extends State<LogIn> {
                         onPressed: () {
                           Navigator.push(
                             context,
-                            SlidePageRoute(page: NewNavbar()),
+                            SlidePageRoute(page: NewNavbar(isV: false,)),
                           );
                         },
                       ),

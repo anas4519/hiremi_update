@@ -19,7 +19,7 @@ class HeaderSectionFresher extends StatelessWidget {
         Row(
           children: [
             RoundedImage(
-                image: 'assets/icons/logo1.png',
+                image: 'images/icons/logo1.png',
                 border: Border.all(width: 5.0, color: AppColors.lightGrey)),
             SizedBox(
               width: Sizes.responsiveXs(context),
@@ -242,7 +242,7 @@ class HeaderSectionFresher extends StatelessWidget {
           color: AppColors.secondaryText,
           thickness: 0.25,
           height: 0.25,
-        )
+        ),
       ],
     );
   }

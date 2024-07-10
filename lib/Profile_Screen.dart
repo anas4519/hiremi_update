@@ -1,4 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:hiremi_version_two/Custom_Widget/BasicDetails.dart';
+import 'package:hiremi_version_two/Custom_Widget/Education.dart';
+import 'package:hiremi_version_two/Custom_Widget/Experience.dart';
+import 'package:hiremi_version_two/Custom_Widget/KeySkills.dart';
+import 'package:hiremi_version_two/Custom_Widget/Languages.dart';
+import 'package:hiremi_version_two/Custom_Widget/PersonalInfo.dart';
+import 'package:hiremi_version_two/Custom_Widget/PersonalLinks.dart';
+import 'package:hiremi_version_two/Custom_Widget/ProfileStatusSection.dart';
+import 'package:hiremi_version_two/Custom_Widget/ProfileSummary.dart';
+import 'package:hiremi_version_two/Custom_Widget/Projects.dart';
+import 'package:hiremi_version_two/Custom_Widget/drawer_child.dart';
+import 'package:hiremi_version_two/Notofication_screen.dart';
+import 'package:hiremi_version_two/Utils/AppSizes.dart';
+import 'package:hiremi_version_two/Utils/colors.dart';
+
 
 
 class ProfileScreen extends StatelessWidget {
@@ -6,97 +21,88 @@ class ProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final percent = 0.25;
-    final per = percent * 100;
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          "Profile",
-          style: TextStyle(fontWeight: FontWeight.bold),
-        ),
+        title: const Text('Profile'),
         centerTitle: true,
         actions: [
-          IconButton(onPressed: () {}, icon: const Icon(Icons.notifications))
+          IconButton(
+            onPressed: () {
+              Navigator.of(context).push(MaterialPageRoute(
+                builder: (ctx) => const NotificationScreen(),
+              ));
+            },
+            icon: const Icon(Icons.notifications),
+          ),
         ],
-        leading: IconButton(onPressed: () {}, icon: const Icon(Icons.menu)),
+        
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Center(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  // CircularPercentIndicator(
-                  //   radius: 40,
-                  //   lineWidth: 0,
-                  //   percent: percent,
-                  //   center: Text('$per%'),
-                  //   progressColor: percent > 0.5 ? Colors.green : Colors.red,
-                  // ),
-                  const Text(
-                    'Harsh Pawar',
-                    style: TextStyle(
-                        fontSize: 16, fontWeight: FontWeight.bold),
-                  ),
-                  const SizedBox(height: 6,),
-                  Container(
-                    width: 90,
-                    height: 30,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(50),
-                        border: Border.all(
-                          color: const Color(0xFFC1272D),
-                        )),
-                    child: const Padding(
-                      padding: EdgeInsets.all(6.0),
-                      child: Row(
-                        children: [
-                          Icon(
-                            Icons.check_circle_outline_sharp,
-                            color:  Color(0xFFC1272D),
-                            size: 10,
-                          ),
-                          Text(
-                            'Not verified',
-                            style: TextStyle(color:  Color(0xFFC1272D), fontSize: 10),
-                          )
+      drawer: const Drawer(
+        child: DrawerChild(),
+      ),
+      backgroundColor: AppColors.white,
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: EdgeInsets.only(
+              left: Sizes.responsiveDefaultSpace(context),
+              right: Sizes.responsiveDefaultSpace(context),
+              bottom: kToolbarHeight),
 
-                        ],
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 6,),
-                  const Text(
-                    'Last updated today',
-                    style: TextStyle(
-                        fontSize: 10, color: Colors.grey),
-                  ),
-                  const SizedBox(height: 6,),
-                  ElevatedButton(
-                    onPressed: () {},
-                    style: ButtonStyle(
-                      foregroundColor: WidgetStateProperty.all<Color>(Colors.white),
-                      backgroundColor: WidgetStateProperty.all<Color>(const Color(0xFFC1272D)),
-                      shape: WidgetStateProperty.all<RoundedRectangleBorder>(
-                        RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8.0), // Border radius
-                        ),
-                      ),
-                    ),
-                    child: const Text(
-                      'Verify Now >',
-                      style: TextStyle(fontSize: 10),
-                    ),
-                  )
-                ],
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const ProfileStatusSection(),
+              SizedBox(
+                height: Sizes.responsiveMd(context),
               ),
-            )
-          ],
+              Divider(
+                height: 0.25,
+                thickness: 0.5,
+                color: AppColors.secondaryText,
+              ),
+              SizedBox(
+                height: Sizes.responsiveMd(context),
+              ),
+              const BasicDetails(),
+              SizedBox(
+                height: Sizes.responsiveMd(context),
+              ),
+              const ProfileSummary(),
+              SizedBox(
+                height: Sizes.responsiveMd(context),
+              ),
+              const KeySkills(),
+              SizedBox(
+                height: Sizes.responsiveMd(context),
+              ),
+              const Education(),
+              SizedBox(
+                height: Sizes.responsiveMd(context),
+              ),
+              const Experience(),
+              SizedBox(
+                height: Sizes.responsiveMd(context),
+              ),
+              const Projects(),
+              SizedBox(
+                height: Sizes.responsiveMd(context),
+              ),
+              const PersonalInfo(),
+              SizedBox(
+                height: Sizes.responsiveMd(context),
+              ),
+              const PersonalLinks(),
+              SizedBox(
+                height: Sizes.responsiveMd(context),
+              ),
+              const Languages(),
+              const SizedBox(height: 70,)
+            ],
+          ),
         ),
       ),
     );
   }
 }
+
+

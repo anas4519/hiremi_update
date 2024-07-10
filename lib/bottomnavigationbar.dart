@@ -2,11 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:hiremi_version_two/FirstLandingPage.dart';
 import 'package:hiremi_version_two/HomePage.dart';
 import 'package:hiremi_version_two/InternshipScreen.dart';
+import 'package:hiremi_version_two/Profile_Screen.dart';
 import 'package:hiremi_version_two/SeceondLandingpage.dart';
 import 'package:hiremi_version_two/SplashScreen.dart';
+import 'package:hiremi_version_two/applies_screen.dart';
+import 'package:hiremi_version_two/queries_screen.dart';
+import 'package:percent_indicator/circular_percent_indicator.dart';
 
 class NewNavbar extends StatefulWidget {
-  const NewNavbar({Key? key}) : super(key: key);
+  final bool isV;
+  const NewNavbar({Key? key, required this.isV}) : super(key: key);
 
   @override
   State<NewNavbar> createState() => _NewNavbarState();
@@ -16,11 +21,17 @@ class _NewNavbarState extends State<NewNavbar> {
   int _selectedIndex = 0;
   final PageController _pageController = PageController();
 
-  final List<Widget> _pages = [
-    const HomePage(),
-
-
-  ];
+  late List<Widget> _pages;
+  @override
+  void initState() {
+    super.initState();
+    _pages = [
+      HomePage(isVerified: widget.isV),
+      const AppliesScreen(),
+      const QueriesScreen(),
+      const ProfileScreen()
+    ];
+  }
 
   void _onItemTapped(int index) {
     setState(() {
@@ -31,30 +42,23 @@ class _NewNavbarState extends State<NewNavbar> {
 
   @override
   Widget build(BuildContext context) {
-    final double screenHeight = MediaQuery.of(context).size.height;
-    final double screenWidth = MediaQuery.of(context).size.width;
-
+    double screenWidth = MediaQuery.of(context).size.width;
+    double spacing = (screenWidth - (4 * 50)) / 5;
     return Scaffold(
+      backgroundColor: Colors.white,
       body: Stack(
         children: [
-          // PageView(
-          //   controller: _pageController,
-          //   children: _pages,
-          //   onPageChanged: (index) {
-          //     setState(() {
-          //       _selectedIndex = index;
-          //     });
-          //   },
-          // ),
           PageView(
             controller: _pageController,
-            children: _pages.map((page) => Navigator(
-              onGenerateRoute: (settings) {
-                return MaterialPageRoute(
-                  builder: (context) => page,
-                );
-              },
-            )).toList(),
+            children: _pages
+                .map((page) => Navigator(
+                      onGenerateRoute: (settings) {
+                        return MaterialPageRoute(
+                          builder: (context) => page,
+                        );
+                      },
+                    ))
+                .toList(),
             onPageChanged: (index) {
               setState(() {
                 _selectedIndex = index;
@@ -62,94 +66,137 @@ class _NewNavbarState extends State<NewNavbar> {
             },
           ),
           Positioned(
-            bottom: screenHeight * 0.02,
-            left: screenWidth * 0.05,
-            right: screenWidth * 0.05,
+            bottom: 10,
+            left: 20,
+            right: 20,
             child: Container(
-              height: screenHeight * 0.08,
+              height: 64,
               decoration: const BoxDecoration(
-                color: Colors.redAccent,
+                color: Colors.white,
                 borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(20),
-                  topRight: Radius.circular(20),
-                  bottomLeft: Radius.circular(50),
-                  bottomRight: Radius.circular(50),
+                  topLeft: Radius.circular(16),
+                  topRight: Radius.circular(16),
+                  bottomLeft: Radius.circular(32),
+                  bottomRight: Radius.circular(32),
                 ),
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.black12,
+                    color: Colors.grey,
                     blurRadius: 10,
                     offset: Offset(0, 5),
                   ),
                 ],
               ),
-              child: ClipRRect(
-                borderRadius: const BorderRadius.only(
-                  topLeft: Radius.circular(20),
-                  topRight: Radius.circular(20),
-                  bottomLeft: Radius.circular(50),
-                  bottomRight: Radius.circular(50),
-                ),
-                child: BottomNavigationBar(
-                  items: <BottomNavigationBarItem>[
-                    BottomNavigationBarItem(
-                      icon: Icon(Icons.home_filled, size: screenHeight * 0.03, color: _selectedIndex == 0 ? const Color(0xFFC1272D) : Colors.black),
-                      label: 'HOME',
+              child: Padding(
+                padding: const EdgeInsets.all(16),
+                child: Row(
+                  children: [
+                    _buildNavItem(Icons.home_filled, 'HOME', 0),
+                    SizedBox(
+                      width: spacing,
                     ),
-                    BottomNavigationBarItem(
-                      icon: Icon(Icons.file_copy, size: screenHeight * 0.03, color: _selectedIndex == 1 ? const Color(0xFFC1272D) : Colors.black),
-                      label: 'APPLIES',
+                    _buildNavItem(Icons.file_copy, 'APPLIES', 1),
+                    SizedBox(
+                      width: spacing * 3.2,
                     ),
-                    BottomNavigationBarItem(
-                      icon: Icon(Icons.chat, size: screenHeight * 0.03, color: _selectedIndex == 2 ? const Color(0xFFC1272D) : Colors.black),
-                      label: 'QUERIES',
+                    _buildNavItem(Icons.chat, 'QUERIES', 2),
+                    SizedBox(
+                      width: spacing-3.2,
                     ),
-                    BottomNavigationBarItem(
-                      icon: Icon(Icons.person, size: screenHeight * 0.03, color: _selectedIndex == 3 ? const Color(0xFFC1272D) : Colors.black),
-                      label: 'PROFILE',
-                    ),
+                    _buildNavItem(Icons.person, 'PROFILE', 3),
                   ],
-                  currentIndex: _selectedIndex,
-                  selectedItemColor: const Color(0xFFC1272D),
-                  unselectedItemColor: Colors.black,
-                  onTap: _onItemTapped,
-                  showUnselectedLabels: true,
-                  type: BottomNavigationBarType.fixed,
-                  selectedLabelStyle: TextStyle(fontSize: screenHeight * 0.01, color: Colors.black),
-                  unselectedLabelStyle: TextStyle(fontSize: screenHeight * 0.01, color: Colors.black),
                 ),
               ),
             ),
           ),
+          // Positioned(
+          //     bottom:
+          //         10,
+          //     left: 0,
+          //     right: 0,
+          //     child: SizedBox(height: 100, width: 5,child: Image.asset('assets/Rectangle 50.png'))
+          //     ),
           Positioned(
-            bottom: screenHeight * 0.06,
+            bottom: 35,
+            left: screenWidth*0.405,
+              child: CircularPercentIndicator(
+            radius: 39,
+            lineWidth: 15,
+            percent: 0.50,
+            
+            progressColor: const Color(0xFFC1272D),
+            backgroundColor: Colors.transparent,
+            startAngle: 90,
+          )),
+          Positioned(
+            bottom: 25,
             left: 0,
             right: 0,
             child: Transform.translate(
-              offset: Offset(0, -screenHeight * 0.03),
+              offset: const Offset(0, -20),
               child: Center(
                 child: SizedBox(
-                  width: screenWidth * 0.2,
-                  height: screenWidth * 0.2,
+                  width: 64,
+                  height: 64,
                   child: FloatingActionButton(
                     onPressed: () {
                       // Define the action for the FloatingActionButton here
                     },
                     backgroundColor: Colors.white,
                     shape: const CircleBorder(),
-                    child: Center(
+                    child: const Center(
                       child: Column(
                         children: [
-                        //  SizedBox(height: screenHeight * 0.02),
-                          Icon(Icons.all_inclusive, color: const Color(0xFFC1272D), size: screenHeight * 0.04),
-                          Text('HIREMI', style: TextStyle(fontSize: screenHeight * 0.012, fontWeight: FontWeight.bold)),
-                          Text('360', style: TextStyle(fontSize: screenHeight * 0.012, color: const Color(0xFFC1272D))),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Icon(
+                            Icons.all_inclusive,
+                            color: Color(0xFFC1272D),
+                            size: 30,
+                          ),
+                          Text(
+                            'HIREMI',
+                            style: TextStyle(
+                                fontSize: 7, fontWeight: FontWeight.bold),
+                          ),
+                          Text(
+                            '360',
+                            style: TextStyle(
+                                fontSize: 6, color: Color(0xFFC1272D)),
+                          )
                         ],
                       ),
                     ),
                   ),
                 ),
               ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildNavItem(IconData icon, String label, int index) {
+    return GestureDetector(
+      onTap: () => _onItemTapped(index),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Icon(
+            icon,
+            size: 20,
+            color: _selectedIndex == index
+                ? const Color(0xFFC1272D)
+                : Colors.black,
+          ),
+          Text(
+            label,
+            style: const TextStyle(
+              fontSize: 8,
+              color: Colors.black,
             ),
           ),
         ],

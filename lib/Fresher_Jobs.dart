@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hiremi_version_two/Eligibility_Criteria_About_Company.dart';
 import 'package:hiremi_version_two/HeaderSectionFresher.dart';
+import 'package:hiremi_version_two/Notofication_screen.dart';
 import 'package:hiremi_version_two/Role_Details.dart';
 import 'package:hiremi_version_two/Skill_Required.dart';
 import 'package:hiremi_version_two/Utils/AppSizes.dart';
@@ -27,8 +28,8 @@ class _FresherJobsScreenState extends State<FresherJobsScreen> {
           actions: [
             IconButton(
               onPressed: () {
-                //Navigator.of(context).push(
-                  //  MaterialPageRoute(builder: (ctx) => const NotificationScreen()));
+                Navigator.of(context).push(
+                   MaterialPageRoute(builder: (ctx) => const NotificationScreen()));
               },
               icon: const Icon(Icons.notifications))
           ],

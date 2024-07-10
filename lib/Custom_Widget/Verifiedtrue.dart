@@ -12,98 +12,71 @@ class VerifiedProfileWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double containerSize = MediaQuery.of(context).size.width * 0.15;
-    double iconSize = containerSize * 0.65;
-
     return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Container(
-          width: containerSize,
-          height: containerSize,
-          decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            color: Color(0xFFFBEEEE), // Container background color
-          ),
-          child: Center(
-            child: Icon(
-              Icons.person,
-              size: iconSize,
-              color: Colors.redAccent, // Icon color
-            ),
+        CircleAvatar(
+          backgroundColor: const Color(0xFFFBECEC),
+          radius: MediaQuery.of(context).size.width * 0.07,
+          child: const Icon(
+            Icons.person,
+            color: Color(0xFFC1272D),
+            size: 18.86,
           ),
         ),
-        SizedBox(width: containerSize * 0.1),
-        Expanded(
-          child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width * 0.02),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+        const SizedBox(
+          width: 8,
+        ),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Hi, $name',
+              style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            ),
+            Row(
               children: [
-                Text(
-                  "Hi, $name",
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: MediaQuery.of(context).size.width * 0.05,
-                    color: Colors.black,
-                  ),
+                const Icon(
+                  Icons.fingerprint,
+                  size: 10.7,
                 ),
-                SizedBox(height: MediaQuery.of(context).size.height*0.005 ),
-                Row(
-                  children: [
-                    Padding(
-                      padding:  EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width *0.01),
-                      child: Icon(
-                        Icons.fingerprint,
-                        size: MediaQuery.of(context).size.width * 0.04,
-                        color: Colors.grey,
-                      ),
-                    ),
-                    Text(
-                      "App Id: $appId",
-                      style: TextStyle(
-                        fontSize: MediaQuery.of(context).size.width * 0.03,
-                        color: Colors.grey,
-                      ),
-                    ),
-                  ],
+                const Text(
+                  'App ID: ',
+                  style: TextStyle(fontSize: 10.7),
+                ),
+                Text(
+                  appId,
+                  style: const TextStyle(fontSize: 10.7, color: Colors.grey),
+                ),
+                
+              ],
+            ),
+            
+          ],
+        ),
+        const Spacer(),
+        Container(
+          height: MediaQuery.of(context).size.width * 0.08,
+          width: MediaQuery.of(context).size.width * 0.17,
+          decoration: BoxDecoration(
+            color: Colors.green,
+            borderRadius: BorderRadius.circular(8),
+          ),
+          child: Center(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Image.asset('images/new_releases (1).png'),
+                SizedBox(width: MediaQuery.of(context).size.width * 0.01,),
+                const Text(
+                  'Verfied',
+
+                  style: TextStyle(color: Colors.white, fontSize: 8.42),
                 ),
               ],
             ),
           ),
         ),
-        SizedBox(width: MediaQuery.of(context).size.width * 0.02), // Adjust spacing between text and "Verified" container
-        Padding(
-          padding:  EdgeInsets.only(top:  MediaQuery.of(context).size.width *0.02),
-          child: VerifiedContainer(),
-        ),
       ],
-    );
-  }
-}
-
-class VerifiedContainer extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    double containerSize = MediaQuery.of(context).size.width * 0.15;
-
-    return Container(
-      width: containerSize * 1.28,
-      height: containerSize * 0.43,
-      decoration: BoxDecoration(
-        color: Color(0xFF34AD78), // Background color
-        borderRadius: BorderRadius.circular(12), // Circular edges
-      ),
-      child: Center(
-        child: Text(
-          "Verified",
-          style: TextStyle(
-            color: Colors.white, // Text color
-            fontWeight: FontWeight.bold,
-            fontSize: MediaQuery.of(context).size.width * 0.035,
-          ),
-        ),
-      ),
     );
   }
 }

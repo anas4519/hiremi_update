@@ -4,17 +4,7 @@ import 'package:hiremi_version_two/Fresher_Jobs.dart';
 import 'package:hiremi_version_two/InternshipDetailScreen.dart';
 
 class OpportunityCard extends StatelessWidget {
-  final Image dp;
-  final String role;
-  final String company;
-  final String location;
-  final String stipend;
-  final String mode;
-  final String type;
-  final int exp;
-  final int daysPosted;
-
-  OpportunityCard({
+  const OpportunityCard({
     Key? key,
     required this.dp,
     required this.role,
@@ -25,17 +15,28 @@ class OpportunityCard extends StatelessWidget {
     required this.exp,
     required this.type,
     required this.daysPosted,
+    required this.isVerified,
   }) : super(key: key);
+
+  final Image dp;
+  final String role;
+  final String company;
+  final String location;
+  final String stipend;
+  final String mode;
+  final int exp;
+  final String type;
+  final int daysPosted;
+  final bool isVerified;
 
   @override
   Widget build(BuildContext context) {
-    bool isVerified=false;
-    final width = MediaQuery.of(context).size.width;
-    final height = MediaQuery.of(context).size.height;
     return Container(
-      padding: EdgeInsets.all(width*0.03),
+      width: MediaQuery.of(context).size.width * 0.95,
+      height: MediaQuery.of(context).size.height * 0.219,
+      padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(8.0),
+        borderRadius: BorderRadius.circular(8),
         border: Border.all(
           color: Colors.grey,
         ),
@@ -46,119 +47,152 @@ class OpportunityCard extends StatelessWidget {
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              CircleAvatar(
-                radius: width*0.07,
-                backgroundColor: Colors.white,
-                child: dp,
+              Container(
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  border: Border.all(
+                    color: Colors.grey[300]!, // color of the frame
+                    width: 3, // width of the frame
+                  ),
+                ),
+                child: CircleAvatar(
+                  radius: MediaQuery.of(context).size.width * 0.05,
+                  backgroundColor: Colors.white,
+                  child: dp,
+                ),
               ),
-              SizedBox(width: width*0.02),
+              const SizedBox(width: 8),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
                     role,
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16.0),
+                    style: const TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16,
+                    ),
                   ),
-                  SizedBox(height:height*0.015),
+                  const SizedBox(height: 12),
                   Text(
                     company,
                     textAlign: TextAlign.start,
-                    style: TextStyle(fontSize:height*0.015),
+                    style: const TextStyle(fontSize: 8),
                   ),
                 ],
               ),
             ],
           ),
-          SizedBox(height: height*0.015),
+          const SizedBox(height: 10),
           // Location and stipend
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Row(
                 children: [
-                  Icon(Icons.location_on_rounded, color: Colors.grey, size: 14.0),
-                  SizedBox(width: width*0.02),
+                  const Icon(Icons.location_on_rounded,
+                      color: Colors.grey, size: 8),
+                  const SizedBox(width: 5),
                   Text(
                     location,
-                    style: TextStyle(fontSize: height*0.018),
+                    style: const TextStyle(fontSize: 8),
                   ),
                 ],
               ),
-              SizedBox(height: height*0.012),
+              const SizedBox(height: 5),
               Row(
                 children: [
-                  Icon(Icons.attach_money_rounded, color: Colors.grey, size: 14.0),
-                  SizedBox(width: width*0.015),
+                  const Icon(Icons.currency_rupee, color: Colors.grey, size: 8),
+                  const SizedBox(width: 5),
                   Text(
                     stipend,
-                    style: TextStyle(fontSize: height*0.016),
+                    style: const TextStyle(fontSize: 8),
                   ),
                 ],
               ),
             ],
           ),
-          SizedBox(height: height*0.013),
+          const SizedBox(height: 4),
           Row(
             children: [
               Container(
-                height: height*0.025,
-                width: width*0.162,
-                padding: EdgeInsets.symmetric(horizontal: 16.0),
+                height: MediaQuery.of(context).size.height * 0.03,
+                padding: const EdgeInsets.symmetric(horizontal: 8),
                 decoration: const BoxDecoration(
                   color: Color(0xFFFFF6E5),
                 ),
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Icon(Icons.work_rounded, size: width*0.011, color: Colors.amber),
-                    SizedBox(width: width*0.01),
-                    Text(mode, style: TextStyle(fontSize:  width*0.015, fontWeight: FontWeight.bold)),
+                    const Icon(
+                      Icons.work_rounded,
+                      size: 8,
+                      color: Colors.amber,
+                    ),
+                    const SizedBox(width: 5),
+                    Text(mode,
+                        style: const TextStyle(
+                            fontSize: 8, fontWeight: FontWeight.bold)),
                   ],
                 ),
               ),
-              SizedBox(width: width*0.01),
+              const SizedBox(
+                width: 2,
+              ),
               Container(
-                height: height*0.025,
-                width: width*0.182,
-                padding: EdgeInsets.symmetric(horizontal: 16.0),
+                height: MediaQuery.of(context).size.height * 0.03,
+                padding: const EdgeInsets.symmetric(horizontal: 8),
                 decoration: const BoxDecoration(
                   color: Color(0xFFFFEEE5),
                 ),
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Icon(Icons.alarm, size: width*0.011, color: Colors.red),
-                    SizedBox(width: width*0.01),
-                    Text(type, style: TextStyle(fontSize: width*0.015, fontWeight: FontWeight.bold)),
+                    const Icon(
+                      Icons.alarm,
+                      size: 8,
+                      color: Colors.red,
+                    ),
+                    const SizedBox(width: 5),
+                    Text(type,
+                        style: const TextStyle(
+                            fontSize: 8, fontWeight: FontWeight.bold)),
                   ],
                 ),
               ),
-              SizedBox(width:width*0.01),
+              const SizedBox(
+                width: 2,
+              ),
               Container(
-                height: height*0.025,
-                width: width*0.158,
-                padding: EdgeInsets.symmetric(horizontal: 16.0),
+                height: MediaQuery.of(context).size.height * 0.03,
+                padding: const EdgeInsets.symmetric(horizontal: 8),
                 decoration: const BoxDecoration(
                   color: Color(0xFFFFE5EE),
                 ),
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Icon(Icons.work_rounded, size: height*0.0069, color: Color(0xFFED509B)),
-                    SizedBox(width:width*0.001),
-                    Text('$exp Year Exp', style: TextStyle(fontSize: width*0.012, fontWeight: FontWeight.bold)),
+                    const Icon(
+                      Icons.work_rounded,
+                      size: 8,
+                      color: Color(0xFFED509B),
+                    ),
+                    const SizedBox(width: 5),
+                    Text('$exp Year Exp',
+                        style: const TextStyle(
+                            fontSize: 8, fontWeight: FontWeight.bold)),
                   ],
                 ),
               ),
               const Spacer(),
               ElevatedButton(
                 onPressed: () {
-                  if (isVerified) {
+                  if (!isVerified) {
                     showDialog(
                         context: context,
                         builder: (BuildContext context) {
                           return AlertDialog(
                               contentPadding: EdgeInsets.zero,
+                              backgroundColor: Colors.white,
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(20),
                               ),
@@ -172,38 +206,59 @@ class OpportunityCard extends StatelessWidget {
                     else{
                       Navigator.of(context).push(MaterialPageRoute(builder: (ctx)=> const InternshipsDetailsScreen()));
                     }
-
+                    
                   }
                 },
                 style: ButtonStyle(
-                  foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
-                  backgroundColor: MaterialStateProperty.all<Color>(const Color(0xFFC1272D)),
-                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                  foregroundColor: WidgetStateProperty.all<Color>(Colors.white),
+                  backgroundColor:
+                      WidgetStateProperty.all<Color>(const Color(0xFFC1272D)),
+                  shape: WidgetStateProperty.all<RoundedRectangleBorder>(
                     RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8.0), // Border radius
                     ),
                   ),
                 ),
-                child: Text('Apply Now >', style: TextStyle(fontSize: 12.0)),
+                child: const Text(
+                  'Apply Now >',
+                  style: TextStyle(fontSize: 10),
+                ),
               )
             ],
           ),
-          SizedBox(height: height*0.0065),
+          const SizedBox(
+            height: 6,
+          ),
           Container(
-            width: double.infinity, // Responsive length of the horizontal line
+            width: MediaQuery.of(context).size.width *
+                0.92, // Length of the horizontal line
             height: 1, // Thickness of the line
             color: Colors.grey, // Color of the line
           ),
-          SizedBox(height: 16.0),
+          const SizedBox(
+            height: 6,
+          ),
           Row(
             children: [
-              Icon(Icons.track_changes_outlined, color: Colors.green, size:height*0.0199),
-              Text('Actively Recruiting', style: TextStyle(color: Colors.green, fontSize: 14.0)),
+              const Icon(
+                Icons.track_changes_outlined,
+                color: Colors.green,
+                size: 8,
+              ),
+              const Text(
+                'Actively Recruiting',
+                style: TextStyle(color: Colors.green, fontSize: 8),
+              ),
               const Spacer(),
-              Icon(Icons.av_timer, color: Colors.grey, size: 16.0),
-              Text('$daysPosted days ago', style: TextStyle(color: Colors.grey, fontSize: 14.0)),
+              const Icon(
+                Icons.av_timer,
+                color: Colors.grey,
+                size: 8,
+              ),
+              Text('$daysPosted days ago',
+                  style: const TextStyle(color: Colors.grey, fontSize: 8))
             ],
-          ),
+          )
         ],
       ),
     );
