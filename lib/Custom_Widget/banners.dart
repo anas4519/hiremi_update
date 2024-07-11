@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hiremi_version_two/verify.dart';
 
 class AdBanner extends StatelessWidget {
   AdBanner({Key? key, required this.isVerified}) : super(key: key);
@@ -96,11 +97,13 @@ class AdBanner extends StatelessWidget {
                   ),
                   child: TextButton(
                     onPressed: () {
-                      // Navigator.of(context).push(
-                      //   MaterialPageRoute(
-                      //     builder: (ctx) => const VerificationScreen(),
-                      //   ),
-                      // );
+                      if(!isVerified) {
+                        Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (ctx) => const VerificationScreen(),
+                        ),
+                      );
+                      }
                     },
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,

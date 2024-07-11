@@ -8,7 +8,9 @@ import 'package:hiremi_version_two/Utils/AppSizes.dart';
 import 'package:hiremi_version_two/Utils/colors.dart';
 
 class AddBasicDetails extends StatefulWidget {
-  const AddBasicDetails({Key? key, }) : super(key: key);
+  const AddBasicDetails({
+    Key? key,
+  }) : super(key: key);
 
   @override
   State<AddBasicDetails> createState() => _AddBasicDetailsState();
@@ -22,9 +24,15 @@ class _AddBasicDetailsState extends State<AddBasicDetails> {
   final phoneController = TextEditingController();
   final whatsappController = TextEditingController();
 
-  bool isAllFieldFilled ()  {
-    return opportunity.isNotEmpty && cityController.text.isNotEmpty && stateController.text.isNotEmpty && emailController.text.isNotEmpty && phoneController.text.isNotEmpty && whatsappController.text.isNotEmpty;
+  bool isAllFieldFilled() {
+    return opportunity.isNotEmpty &&
+        cityController.text.isNotEmpty &&
+        stateController.text.isNotEmpty &&
+        emailController.text.isNotEmpty &&
+        phoneController.text.isNotEmpty &&
+        whatsappController.text.isNotEmpty;
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,9 +42,12 @@ class _AddBasicDetailsState extends State<AddBasicDetails> {
         title: const Text('Edit Profile'),
         centerTitle: true,
         actions: [
-          IconButton(onPressed: (){
-            Navigator.of(context).push(MaterialPageRoute(builder: (ctx)=>NotificationScreen()));
-          }, icon: const Icon(Icons.notifications))
+          IconButton(
+              onPressed: () {
+                Navigator.of(context).push(
+                    MaterialPageRoute(builder: (ctx) => NotificationScreen()));
+              },
+              icon: const Icon(Icons.notifications))
         ],
       ),
       body: SingleChildScrollView(
@@ -143,7 +154,6 @@ class _AddBasicDetailsState extends State<AddBasicDetails> {
                   ],
                 ),
               ),
-
               SizedBox(
                 height: Sizes.responsiveMd(context),
               ),
@@ -171,7 +181,8 @@ class _AddBasicDetailsState extends State<AddBasicDetails> {
                         SizedBox(
                           height: Sizes.responsiveSm(context),
                         ),
-                        CustomTextField(controller: cityController, hintText: 'City')
+                        CustomTextField(
+                            controller: cityController, hintText: 'City')
                       ],
                     ),
                   ),
@@ -200,7 +211,10 @@ class _AddBasicDetailsState extends State<AddBasicDetails> {
                         SizedBox(
                           height: Sizes.responsiveSm(context),
                         ),
-                        CustomTextField(controller: stateController,hintText: 'State',),
+                        CustomTextField(
+                          controller: stateController,
+                          hintText: 'State',
+                        ),
                       ],
                     ),
                   )
@@ -215,7 +229,8 @@ class _AddBasicDetailsState extends State<AddBasicDetails> {
                   Row(children: [
                     const Text(
                       'Email Address',
-                      style: TextStyle(fontSize: 12, fontWeight: FontWeight.w500),
+                      style:
+                          TextStyle(fontSize: 12, fontWeight: FontWeight.w500),
                     ),
                     Text(
                       '*',
@@ -229,7 +244,8 @@ class _AddBasicDetailsState extends State<AddBasicDetails> {
                   SizedBox(
                     height: Sizes.responsiveSm(context),
                   ),
-                 CustomTextField(controller: emailController, hintText: 'abc@gmail.com')
+                  CustomTextField(
+                      controller: emailController, hintText: 'abc@gmail.com')
                 ],
               ),
               SizedBox(
@@ -241,7 +257,8 @@ class _AddBasicDetailsState extends State<AddBasicDetails> {
                   Row(children: [
                     const Text(
                       'Phone Number',
-                      style: TextStyle(fontSize: 12, fontWeight: FontWeight.w500),
+                      style:
+                          TextStyle(fontSize: 12, fontWeight: FontWeight.w500),
                     ),
                     Text(
                       '*',
@@ -255,7 +272,10 @@ class _AddBasicDetailsState extends State<AddBasicDetails> {
                   SizedBox(
                     height: Sizes.responsiveSm(context),
                   ),
-                CustomTextField(controller: phoneController, hintText: '+919988776563',textInputType: TextInputType.number)
+                  CustomTextField(
+                      controller: phoneController,
+                      hintText: '+919988776563',
+                      textInputType: TextInputType.number)
                 ],
               ),
               SizedBox(
@@ -267,7 +287,8 @@ class _AddBasicDetailsState extends State<AddBasicDetails> {
                   Row(children: [
                     const Text(
                       'WhatsApp Number',
-                      style: TextStyle(fontSize: 12, fontWeight: FontWeight.w500),
+                      style:
+                          TextStyle(fontSize: 12, fontWeight: FontWeight.w500),
                     ),
                     Text(
                       '*',
@@ -281,8 +302,11 @@ class _AddBasicDetailsState extends State<AddBasicDetails> {
                   SizedBox(
                     height: Sizes.responsiveSm(context),
                   ),
-                  CustomTextField(controller: whatsappController, hintText: '+919988776563',textInputType: TextInputType.number,)
-
+                  CustomTextField(
+                    controller: whatsappController,
+                    hintText: '+919988776563',
+                    textInputType: TextInputType.number,
+                  )
                 ],
               ),
               SizedBox(
@@ -295,7 +319,8 @@ class _AddBasicDetailsState extends State<AddBasicDetails> {
                       style: ElevatedButton.styleFrom(
                         backgroundColor: AppColors.primary,
                         shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(Sizes.radiusSm)),
+                            borderRadius:
+                                BorderRadius.circular(Sizes.radiusSm)),
                         padding: EdgeInsets.symmetric(
                             vertical: Sizes.responsiveHorizontalSpace(context),
                             horizontal: Sizes.responsiveMdSm(context)),
@@ -303,16 +328,16 @@ class _AddBasicDetailsState extends State<AddBasicDetails> {
                       onPressed: () {
                         if (isAllFieldFilled()) {
                           setState(() {
-                            UserModel(opportunity: opportunity,
+                            UserModel(
+                                opportunity: opportunity,
                                 city: cityController.text,
                                 state: stateController.text,
                                 email: emailController.text,
                                 phoneNumber: phoneController.text,
-                                whatsappNumber: whatsappController
-                                    .text);
+                                whatsappNumber: whatsappController.text);
                           });
                           Navigator.of(context).push(MaterialPageRoute(
-                              builder: (ctx) =>  ProfileScreen()));
+                              builder: (ctx) => ProfileScreen()));
                         }
                       },
                       child: const Text(
@@ -325,27 +350,33 @@ class _AddBasicDetailsState extends State<AddBasicDetails> {
                       )),
                   OutlinedButton(
                       style: OutlinedButton.styleFrom(
-                        side:   BorderSide(color: AppColors.primary,width: 0.5),
+                        side: BorderSide(color: AppColors.primary, width: 0.5),
                         shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(Sizes.radiusSm)),
+                            borderRadius:
+                                BorderRadius.circular(Sizes.radiusSm)),
                         padding: EdgeInsets.symmetric(
                             vertical: Sizes.responsiveSm(context),
                             horizontal: Sizes.responsiveMdSm(context)),
                       ),
                       onPressed: () {
-                        if(isAllFieldFilled()){
+                        if (isAllFieldFilled()) {
                           setState(() {
-                            UserModel(opportunity: opportunity, city: cityController.text, state: stateController.text, email: emailController.text, phoneNumber: phoneController.text, whatsappNumber: whatsappController
-                            .text);
+                            UserModel(
+                                opportunity: opportunity,
+                                city: cityController.text,
+                                state: stateController.text,
+                                email: emailController.text,
+                                phoneNumber: phoneController.text,
+                                whatsappNumber: whatsappController.text);
                           });
                           Navigator.of(context).push(MaterialPageRoute(
-                              builder: (ctx) =>   AddProfileSummary()));
+                              builder: (ctx) => AddProfileSummary()));
                         }
                       },
-                      child:  Row(
+                      child: Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                           Text(
+                          Text(
                             'Save & Next',
                             style: TextStyle(
                               fontSize: 12,
@@ -356,7 +387,7 @@ class _AddBasicDetailsState extends State<AddBasicDetails> {
                           SizedBox(
                             width: Sizes.responsiveXs(context),
                           ),
-                           Icon(
+                          Icon(
                             Icons.arrow_forward_ios_sharp,
                             size: 11,
                             color: AppColors.primary,
@@ -364,11 +395,12 @@ class _AddBasicDetailsState extends State<AddBasicDetails> {
                         ],
                       )),
                 ],
-              )
-            ])),
+              ),
+              const SizedBox(height: 64,)
+            ]
+            )
+            ),
       ),
-        
     );
   }
 }
-

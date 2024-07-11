@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hiremi_version_two/verify.dart';
 
 
 class CustomAlertbox extends StatefulWidget {
@@ -132,7 +133,7 @@ class _CustomAlertboxState extends State<CustomAlertbox> {
                 ),
                 child: TextButton(
                   onPressed: () {
-                   // Navigator.of(context).push(MaterialPageRoute(builder: (context)=>VerificationScreen()));
+                   Navigator.of(context).push(MaterialPageRoute(builder: (context)=>const VerificationScreen()));
                   },
                   child: const Text(
                     'Review & Verify Now >',

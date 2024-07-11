@@ -3,10 +3,12 @@ import 'package:hiremi_version_two/verify.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 
 class VerificationStatus extends StatelessWidget {
-  const VerificationStatus({Key? key}) : super(key: key);
+  const VerificationStatus({Key? key, required this.percent}) : super(key: key);
+  final double percent;
 
   @override
   Widget build(BuildContext context) {
+    double percentage = percent*100;
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
     return Container(
@@ -56,9 +58,9 @@ class VerificationStatus extends StatelessWidget {
                             0.05, // Adjusted based on screen height
                         lineWidth: screenHeight *
                             0.0075, // Adjusted based on screen height
-                        percent: 0.25,
+                        percent: percent,
                         center: Text(
-                          '25%',
+                          '$percentage%',
                           style: TextStyle(
                             color: Colors.green,
                             fontWeight: FontWeight.bold,
@@ -149,7 +151,7 @@ class VerificationStatus extends StatelessWidget {
                                       0.05, // Adjusted based on screen width
                                   height: screenHeight *
                                       0.003, // Adjusted based on screen height
-                                  color: Colors.white,
+                                  color: percent>=0.50? Colors.green:Colors.white,
                                 ),
                                 SizedBox(
                                   height: screenHeight *
@@ -165,14 +167,14 @@ class VerificationStatus extends StatelessWidget {
                                   height: screenWidth *
                                       0.07, // Adjusted based on screen width
                                   decoration: BoxDecoration(
-                                    color: Colors.white,
+                                    color: percent>=0.50? Colors.green:Colors.white,
                                     borderRadius: BorderRadius.circular(
                                         screenWidth *
                                             0.035), // Adjusted based on screen width
                                   ),
                                   child: Icon(
                                     Icons.call,
-                                    color: const Color(0xFFC1272D),
+                                    color: percent>=0.50? Colors.white: const Color(0xFFC1272D),
                                     size: screenWidth *
                                         0.03, // Adjusted based on screen width
                                   ),
@@ -182,7 +184,7 @@ class VerificationStatus extends StatelessWidget {
                                       0.005, // Adjusted based on screen height
                                 ),
                                 Text(
-                                  'Profile\nCreated',
+                                  'Contact\ninformation',
                                   style: TextStyle(
                                     fontSize: screenWidth *
                                         0.01, // Adjusted based on screen width
@@ -196,10 +198,25 @@ class VerificationStatus extends StatelessWidget {
                               children: [
                                 Container(
                                   width: screenWidth *
-                                      0.1, // Adjusted based on screen width
+                                      0.05, // Adjusted based on screen width
                                   height: screenHeight *
                                       0.003, // Adjusted based on screen height
-                                  color: Colors.white,
+                                  color: percent>=0.50? Colors.green:Colors.white,
+                                ),
+                                SizedBox(
+                                  height: screenHeight *
+                                      0.02, // Adjusted based on screen height
+                                )
+                              ],
+                            ),
+                            Column(
+                              children: [
+                                Container(
+                                  width: screenWidth *
+                                      0.05, // Adjusted based on screen width
+                                  height: screenHeight *
+                                      0.003, // Adjusted based on screen height
+                                  color:percent>=0.75? Colors.green:Colors.white,
                                 ),
                                 SizedBox(
                                   height: screenHeight *
@@ -215,14 +232,14 @@ class VerificationStatus extends StatelessWidget {
                                   height: screenWidth *
                                       0.07, // Adjusted based on screen width
                                   decoration: BoxDecoration(
-                                    color: Colors.white,
+                                    color: percent>=0.75? Colors.green:Colors.white,
                                     borderRadius: BorderRadius.circular(
                                         screenWidth *
                                             0.035), // Adjusted based on screen width
                                   ),
                                   child: Icon(
                                     Icons.school,
-                                    color: const Color(0xFFC1272D),
+                                    color: percent>=0.75? Colors.white: const Color(0xFFC1272D),
                                     size: screenWidth *
                                         0.03, // Adjusted based on screen width
                                   ),
@@ -232,7 +249,7 @@ class VerificationStatus extends StatelessWidget {
                                       0.005, // Adjusted based on screen height
                                 ),
                                 Text(
-                                  'Profile\nCreated',
+                                  'Education\nInformation',
                                   style: TextStyle(
                                     fontSize: screenWidth *
                                         0.01, // Adjusted based on screen width
@@ -246,10 +263,25 @@ class VerificationStatus extends StatelessWidget {
                               children: [
                                 Container(
                                   width: screenWidth *
-                                      0.1, // Adjusted based on screen width
+                                      0.05, // Adjusted based on screen width
                                   height: screenHeight *
                                       0.003, // Adjusted based on screen height
-                                  color: Colors.white,
+                                  color: percent>=0.75? Colors.green:Colors.white,
+                                ),
+                                SizedBox(
+                                  height: screenHeight *
+                                      0.02, // Adjusted based on screen height
+                                )
+                              ],
+                            ),
+                            Column(
+                              children: [
+                                Container(
+                                  width: screenWidth *
+                                      0.05, // Adjusted based on screen width
+                                  height: screenHeight *
+                                      0.003, // Adjusted based on screen height
+                                  color:percent>=1? Colors.green:Colors.white,
                                 ),
                                 SizedBox(
                                   height: screenHeight *
@@ -265,14 +297,14 @@ class VerificationStatus extends StatelessWidget {
                                   height: screenWidth *
                                       0.07, // Adjusted based on screen width
                                   decoration: BoxDecoration(
-                                    color: Colors.white,
+                                    color: percent>=1? Colors.green:Colors.white,
                                     borderRadius: BorderRadius.circular(
                                         screenWidth *
                                             0.035), // Adjusted based on screen width
                                   ),
                                   child: Icon(
                                     Icons.account_balance,
-                                    color: const Color(0xFFC1272D),
+                                    color: percent>=1? Colors.white: const Color(0xFFC1272D),
                                     size: screenWidth *
                                         0.03, // Adjusted based on screen width
                                   ),
@@ -282,7 +314,7 @@ class VerificationStatus extends StatelessWidget {
                                       0.005, // Adjusted based on screen height
                                 ),
                                 Text(
-                                  'Profile\nCreated',
+                                  'Verification\nPayment',
                                   style: TextStyle(
                                     fontSize: screenWidth *
                                         0.01, // Adjusted based on screen width

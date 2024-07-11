@@ -64,6 +64,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    const percent = 0.8;
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
 
@@ -94,7 +95,7 @@ class _HomePageState extends State<HomePage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              if (!widget.isVerified) const VerificationStatus(),
+              if (!widget.isVerified) const VerificationStatus(percent: percent,),
               if (widget.isVerified) const VerifiedProfileWidget(name: 'Harsh Pawar', appId: '00011102'),
               SizedBox(height: screenHeight * 0.02),
               Column(
