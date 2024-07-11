@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final textTheme = GoogleFonts.poppinsTextTheme();
+    // final textTheme = GoogleFonts.poppinsTextTheme();
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
@@ -24,7 +24,6 @@ class MyApp extends StatelessWidget {
           backgroundColor: Colors.white
         ),
         scaffoldBackgroundColor: Colors.white,
-        textTheme: textTheme,
         fontFamily: GoogleFonts.poppins().fontFamily,
       ),
 

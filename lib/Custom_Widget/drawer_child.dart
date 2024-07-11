@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hiremi_version_two/Edit_Profile_Section/BasicDetails/AddBasicDetails.dart';
+import 'package:hiremi_version_two/Help_Support.dart';
 import 'package:hiremi_version_two/about_us.dart';
 
 import 'package:percent_indicator/circular_percent_indicator.dart';
@@ -239,7 +240,9 @@ class DrawerChild extends StatelessWidget {
                     borderRadius: BorderRadius.circular(screenHeight * 0.015),
                   ),
                   child: TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.of(context).push(MaterialPageRoute(builder: (ctx)=> const HelpSupport()));
+                    },
                     child: Text(
                       '>',
                       style: TextStyle(
