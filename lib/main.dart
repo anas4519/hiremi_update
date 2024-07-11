@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hiremi_version_two/Help_Support.dart';
+import 'package:hiremi_version_two/Settings.dart';
 import 'SplashScreen.dart';
 
 

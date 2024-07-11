@@ -92,7 +92,7 @@ class AddKeySkills extends StatelessWidget {
                       onPressed: () {
                         if (skillController.text.isNotEmpty) {
                           Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) =>  const ProfileScreen()));
+                              builder: (context) =>  ProfileScreen()));
                         }
                       },
                       child: const Text(

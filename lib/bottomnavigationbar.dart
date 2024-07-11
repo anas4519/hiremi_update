@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:hiremi_version_two/FirstLandingPage.dart';
 import 'package:hiremi_version_two/HomePage.dart';
-import 'package:hiremi_version_two/InternshipScreen.dart';
 import 'package:hiremi_version_two/Profile_Screen.dart';
-import 'package:hiremi_version_two/SeceondLandingpage.dart';
-import 'package:hiremi_version_two/SplashScreen.dart';
+
 import 'package:hiremi_version_two/applies_screen.dart';
 import 'package:hiremi_version_two/queries_screen.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
@@ -29,7 +26,7 @@ class _NewNavbarState extends State<NewNavbar> {
       HomePage(isVerified: widget.isV),
       const AppliesScreen(),
       const QueriesScreen(),
-      const ProfileScreen()
+      ProfileScreen()
     ];
   }
 
@@ -91,19 +88,21 @@ class _NewNavbarState extends State<NewNavbar> {
                 padding: const EdgeInsets.all(16),
                 child: Row(
                   children: [
+                    SizedBox(width: spacing/2.5,),
                     _buildNavItem(Icons.home_filled, 'HOME', 0),
                     SizedBox(
                       width: spacing,
                     ),
-                    _buildNavItem(Icons.file_copy, 'APPLIES', 1),
+                    _buildNavItem(Icons.event_note, 'APPLIES', 1),
                     SizedBox(
-                      width: spacing * 3.2,
+                      width: spacing*2.4,
                     ),
-                    _buildNavItem(Icons.chat, 'QUERIES', 2),
+                    _buildNavItem(Icons.local_activity_outlined, 'QUERIES', 2),
                     SizedBox(
-                      width: spacing-3.2,
+                      width: spacing,
                     ),
                     _buildNavItem(Icons.person, 'PROFILE', 3),
+                     SizedBox(width: spacing/2.5,),
                   ],
                 ),
               ),

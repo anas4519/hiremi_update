@@ -56,7 +56,7 @@ class AddProfileSummary extends StatelessWidget {
             CustomTextField(
               controller: summaryController,
               hintText: 'Tell us about yourself...',
-              isLarge: true,
+              
             ),
             SizedBox(
               height: Sizes.responsiveXs(context),

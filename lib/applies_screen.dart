@@ -4,16 +4,15 @@ class AppliesScreen extends StatefulWidget {
   const AppliesScreen({Key? key}) : super(key: key);
 
   @override
-  State<AppliesScreen> createState() => _AppliesState();
+  State<AppliesScreen> createState() => _AppliesScreenState();
 }
 
-class _AppliesState extends State<AppliesScreen> {
+class _AppliesScreenState extends State<AppliesScreen> {
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
-      backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.white,
         title: const Text(
@@ -29,128 +28,156 @@ class _AppliesState extends State<AppliesScreen> {
           ),
         ],
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            const Padding(
-              padding: EdgeInsets.all(3.0),
-              child: Image(
-                image: AssetImage('images/Empty-bro.png'),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Padding(
+            padding:  EdgeInsets.all(screenHeight*0.02),
+            child:Image.asset('images/Empty-bro.png',height: screenHeight*0.4,),
+            ),
+
+          SizedBox(
+            height: screenHeight * 0.002,
+          ),
+          const Text(
+            'No Applies, Select from Hiremi’s Featured to',
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16.0),
+            textAlign: TextAlign.center,
+          ),
+          const Text(
+            'start your journey today.',
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16.0),
+            textAlign: TextAlign.center,
+          ),
+          SizedBox(
+            height: screenHeight * 0.01,
+          ),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Padding(
+                padding:  EdgeInsets.all(screenWidth*0.02),
+                child: TextButton(
+                  onPressed: () {
+                    // Handle button tap
+                  },
+                  style: ButtonStyle(
+                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                      RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
+                    ),
+                    side: MaterialStateProperty.all<BorderSide>(
+                      const BorderSide(color: Colors.orange, width: 2),
+                    ),
+                    padding: MaterialStateProperty.all<EdgeInsets>(
+                      const EdgeInsets.symmetric(vertical: 16, horizontal:20),
+                    ),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Image.asset('images/Group 170.png'),
+
+                      SizedBox(width: screenWidth*0.02,),
+                      const Text(
+                        "Internships",
+                        style: TextStyle(
+                            color: Colors.orange,
+                            fontSize: 16.0,
+                            fontWeight: FontWeight.bold
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+
               ),
-            ),
-            SizedBox(
-              height: screenHeight * 0.01,
-            ),
-            const Text(
-              'No Applies, Select from Hiremi’s Featured to',
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16.0),
-              textAlign: TextAlign.center,
-            ),
-            const Text(
-              'start your journey today.',
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16.0),
-              textAlign: TextAlign.center,
-            ),
-            SizedBox(
-              height: screenHeight * 0.02,
-            ),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(5.0),
-                  child: Container(
-                    width: double.infinity,
-                    height: 50,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(5.0),
-                      border: Border.all(color: Colors.orange,width: screenWidth*0.005),
+              Padding(
+                padding:  EdgeInsets.all(screenWidth*0.02),
+                child: TextButton(
+                  onPressed: () {
+                    // Handle button tap
+                  },
+                  style: ButtonStyle(
+                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                      RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
                     ),
-                    child: const Stack(alignment: Alignment.centerLeft, children: [
-                      Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: Image(
-                            image: AssetImage('images/Group 170.png')),
+                    side: MaterialStateProperty.all<BorderSide>(
+                      const BorderSide(color: Colors.red, width: 2),
+                    ),
+                    padding: MaterialStateProperty.all<EdgeInsets>(
+                      const EdgeInsets.symmetric(vertical: 16, horizontal:20),
+                    ),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Image.asset('images/Group 170 (1).png'),
+                      SizedBox(width: screenWidth*0.02,),
+                      const Text(
+                        "Fresher Jobs",
+                        style: TextStyle(
+                            color: Colors.red,
+                            fontSize: 16.0,
+                            fontWeight: FontWeight.bold
+                        ),
                       ),
-                      Positioned(
-                        left: 36.0, // Adjust position as needed
-                        child: Text('Internships',
-                            style: TextStyle(
-                                fontSize: 18.0,
-                                color: Colors.orange,
-                                fontWeight: FontWeight.bold)),
-                      ),
-                    ]),
+                    ],
                   ),
                 ),
-                SizedBox(
-                  height: screenHeight * 0.01,
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(5.0),
-                  child: Container(
-                    width: double.infinity,
-                    height: 50,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(5.0),
-                      border: Border.all(
-                          color: Colors.red, width: screenWidth*0.005),
+
+              ),
+
+              Padding(
+                padding: EdgeInsets.all(screenWidth*0.02),
+                child: TextButton(
+                  onPressed: () {
+                    // Handle button tap
+                  },
+                  style: ButtonStyle(
+                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                      RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
                     ),
-                    child: const Stack(alignment: Alignment.centerLeft, children: [
-                      Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: Image(
-                            image: AssetImage('images/Group 170 (1).png')),
+                    side: MaterialStateProperty.all<BorderSide>(
+                      const BorderSide(color: Colors.purpleAccent, width: 2),
+                    ),
+                    padding: MaterialStateProperty.all<EdgeInsets>(
+                      const EdgeInsets.symmetric(vertical: 16, horizontal:20),
+                    ),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Image.asset('images/Group 170 (2).png'),
+                      SizedBox(width: screenWidth*0.02,),
+                      const Text(
+                        "Experienced Jobs",
+                        style: TextStyle(
+                            color: Colors.purpleAccent,
+                            fontSize: 16.0,
+                            fontWeight: FontWeight.bold
+                        ),
                       ),
-                      Positioned(
-                        left: 36.0, // Adjust position as needed
-                        child: Text('Fresher Jobs',
-                            style: TextStyle(
-                                fontSize: 18.0,
-                                color: Colors.red,
-                                fontWeight: FontWeight.bold)),
-                      ),
-                    ]),
+                    ],
                   ),
                 ),
-                SizedBox(
-                  height: screenHeight * 0.01,
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(5.0),
-                  child: Container(
-                    width: double.infinity,
-                    height: 50,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(5.0),
-                      border: Border.all(
-                          color: Colors.purpleAccent,
-                          width: screenWidth*0.005),
-                    ),
-                    child: const Stack(alignment: Alignment.centerLeft, children: [
-                      Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: Image(
-                            image: AssetImage('images/Group 170 (2).png')),
-                      ),
-                      Positioned(
-                        left: 36.0, // Adjust position as needed
-                        child: Text('Experienced Jobs',
-                            style: TextStyle(
-                                fontSize: 18.0,
-                                color: Colors.purpleAccent,
-                                fontWeight: FontWeight.bold)),
-                      ),
-                    ]),
-                  ),
-                ),
-              ],
-            )
-          ],
-        ),
+
+              )
+
+
+            ],
+          ),
+        ],
       ),
     );
   }
 }
+

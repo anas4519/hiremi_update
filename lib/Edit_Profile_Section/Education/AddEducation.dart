@@ -170,7 +170,7 @@ class AddEducation extends StatelessWidget {
                     onPressed: () {
                       if (educationController.text.isNotEmpty && courseController.text.isNotEmpty && yearController.text.isNotEmpty && marksController.text.isNotEmpty) {
                         Navigator.of(context).push(
-                            MaterialPageRoute(builder: (context) => const ProfileScreen()));
+                            MaterialPageRoute(builder: (context) => ProfileScreen()));
                       }
                     },
                     child: const Text(
