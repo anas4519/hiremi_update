@@ -3,7 +3,7 @@ import 'package:hiremi_version_two/verified_page.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 
 class VerificationScreen3 extends StatefulWidget {
-  const VerificationScreen3({Key? key, }) : super(key: key);
+  const VerificationScreen3({Key? key}) : super(key: key);
 
   @override
   State<VerificationScreen3> createState() => _VerificationScreen3State();
@@ -13,8 +13,16 @@ class _VerificationScreen3State extends State<VerificationScreen3> {
   final TextEditingController _idController = TextEditingController();
   final TextEditingController _domainController = TextEditingController();
 
+  bool _idValid = true;
+  bool _domainValid = true;
+
   bool _isAllFieldsValid() {
-    return _idController.text.isNotEmpty && _domainController.text.isNotEmpty;
+    setState(() {
+      _idValid = _idController.text.isNotEmpty;
+      _domainValid = _domainController.text.isNotEmpty;
+    });
+
+    return _idValid && _domainValid;
   }
 
   @override
@@ -114,9 +122,11 @@ class _VerificationScreen3State extends State<VerificationScreen3> {
                 children: [
                   const Row(
                     children: [
-                      Text(
-                        'Enrollment Number / Roll Number / College ID / UAN Number etc.',
-                        style: TextStyle(fontSize: 11),
+                      Expanded(
+                        child: Text(
+                          'Enrollment Number / Roll Number / College ID / UAN Number etc.',
+                          style: TextStyle(fontSize: 11),
+                        ),
                       ),
                       Text(
                         '*',
@@ -132,24 +142,26 @@ class _VerificationScreen3State extends State<VerificationScreen3> {
                     width: screenWidth,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(8),
-                      border: Border.all(color: Colors.green),
+                      border: Border.all(color: _idValid ? Colors.green : Colors.red),
                     ),
                     child: TextField(
                       controller: _idController,
-                      keyboardType: TextInputType.phone,
+                      keyboardType: TextInputType.text,
                       decoration: InputDecoration(
                         border: InputBorder.none,
                         contentPadding: EdgeInsets.all(screenHeight * 0.015),
+                        errorText: _idValid ? null : 'This field cannot be empty',
                       ),
                     ),
                   ),
                   SizedBox(height: screenHeight * 0.02),
                   const Row(
                     children: [
-                      Text(
-                        'Interest Domain',
-                        style: TextStyle(),
-                      ),
+                      
+                         Text(
+                          'Interest Domain',
+                        ),
+                      
                       Text(
                         '*',
                         style: TextStyle(
@@ -164,14 +176,15 @@ class _VerificationScreen3State extends State<VerificationScreen3> {
                     width: screenWidth,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(8),
-                      border: Border.all(color: Colors.green),
+                      border: Border.all(color: _domainValid ? Colors.green : Colors.red),
                     ),
                     child: TextField(
                       controller: _domainController,
-                      keyboardType: TextInputType.phone,
+                      keyboardType: TextInputType.text,
                       decoration: InputDecoration(
                         border: InputBorder.none,
                         contentPadding: EdgeInsets.all(screenHeight * 0.015),
+                        errorText: _domainValid ? null : 'This field cannot be empty',
                       ),
                     ),
                   ),
@@ -197,7 +210,7 @@ class _VerificationScreen3State extends State<VerificationScreen3> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Image.asset('images/new_releases (1).png'),
-                            SizedBox(width: screenWidth*0.02,),
+                            SizedBox(width: screenWidth * 0.02),
                             Text(
                               'Submit and Proceed Payment >',
                               style: TextStyle(

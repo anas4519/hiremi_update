@@ -3,7 +3,7 @@ import 'package:hiremi_version_two/verification_screens/verification_screen3.dar
 import 'package:percent_indicator/circular_percent_indicator.dart';
 
 class VerificationScreen2 extends StatefulWidget {
-  const VerificationScreen2({Key? key, }) : super(key: key);
+  const VerificationScreen2({Key? key}) : super(key: key);
 
   @override
   State<VerificationScreen2> createState() => _VerificationScreenState();
@@ -16,12 +16,26 @@ class _VerificationScreenState extends State<VerificationScreen2> {
   final TextEditingController _degreeController = TextEditingController();
   final TextEditingController _passYearController = TextEditingController();
 
+  bool _collegeNameValid = true;
+  bool _collegeStateValid = true;
+  bool _branchValid = true;
+  bool _degreeValid = true;
+  bool _passYearValid = true;
+
   bool _isAllFieldsValid() {
-    return _collegeNameController.text.isNotEmpty &&
-        _collegeStateController.text.isNotEmpty &&
-        _branchController.text.isNotEmpty &&
-        _degreeController.text.isNotEmpty &&
-        _passYearController.text.isNotEmpty;
+    setState(() {
+      _collegeNameValid = _collegeNameController.text.isNotEmpty;
+      _collegeStateValid = _collegeStateController.text.isNotEmpty;
+      _branchValid = _branchController.text.isNotEmpty;
+      _degreeValid = _degreeController.text.isNotEmpty;
+      _passYearValid = _passYearController.text.isNotEmpty;
+    });
+
+    return _collegeNameValid &&
+        _collegeStateValid &&
+        _branchValid &&
+        _degreeValid &&
+        _passYearValid;
   }
 
   @override
@@ -122,159 +136,40 @@ class _VerificationScreenState extends State<VerificationScreen2> {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Row(
-                    children: [
-                      Text(
-                        'College Name',
-                      ),
-                      Text(
-                        '*',
-                        style: TextStyle(
-                          color: Colors.red,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ],
+                  _buildTextField(
+                    controller: _collegeNameController,
+                    labelText: 'College Name',
+                    isValid: _collegeNameValid,
+                    screenWidth: screenWidth,
+                    screenHeight: screenHeight,
                   ),
-                  SizedBox(height: screenHeight * 0.01),
-                  Container(
-                    width: screenWidth,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8),
-                      border: Border.all(color: Colors.green),
-                    ),
-                    child: TextField(
-                      controller: _collegeNameController,
-                      keyboardType: TextInputType.name,
-                      decoration: InputDecoration(
-                        border: InputBorder.none,
-                        contentPadding: EdgeInsets.all(screenHeight * 0.015),
-                      ),
-                    ),
+                  _buildTextField(
+                    controller: _collegeStateController,
+                    labelText: 'College State',
+                    isValid: _collegeStateValid,
+                    screenWidth: screenWidth,
+                    screenHeight: screenHeight,
                   ),
-                  SizedBox(height: screenHeight * 0.02),
-                  const Row(
-                    children: [
-                      Text(
-                        "College State",
-                      ),
-                      Text(
-                        '*',
-                        style: TextStyle(
-                          color: Colors.red,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ],
+                  _buildTextField(
+                    controller: _branchController,
+                    labelText: 'Branch',
+                    isValid: _branchValid,
+                    screenWidth: screenWidth,
+                    screenHeight: screenHeight,
                   ),
-                  SizedBox(height: screenHeight * 0.01),
-                  Container(
-                    width: screenWidth,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8),
-                      border: Border.all(color: Colors.green),
-                    ),
-                    child: TextField(
-                      controller: _collegeStateController,
-                      keyboardType: TextInputType.name,
-                      decoration: InputDecoration(
-                        border: InputBorder.none,
-                        contentPadding: EdgeInsets.all(screenHeight * 0.015),
-                      ),
-                    ),
+                  _buildTextField(
+                    controller: _degreeController,
+                    labelText: 'Degree',
+                    isValid: _degreeValid,
+                    screenWidth: screenWidth,
+                    screenHeight: screenHeight,
                   ),
-                  SizedBox(height: screenHeight * 0.02),
-                  const Row(
-                    children: [
-                      Text(
-                        'Branch',
-                      ),
-                      Text(
-                        '*',
-                        style: TextStyle(
-                          color: Colors.red,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ],
-                  ),
-                  SizedBox(height: screenHeight * 0.01),
-                  Container(
-                    width: screenWidth,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8),
-                      border: Border.all(color: Colors.green),
-                    ),
-                    child: TextField(
-                      controller: _branchController,
-                      keyboardType: TextInputType.emailAddress,
-                      decoration: InputDecoration(
-                        border: InputBorder.none,
-                        contentPadding: EdgeInsets.all(screenHeight * 0.015),
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: screenHeight * 0.02),
-                  const Row(
-                    children: [
-                      Text(
-                        'Degree',
-                      ),
-                      Text(
-                        '*',
-                        style: TextStyle(
-                          color: Colors.red,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ],
-                  ),
-                  SizedBox(height: screenHeight * 0.01),
-                  Container(
-                    width: screenWidth,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8),
-                      border: Border.all(color: Colors.green),
-                    ),
-                    child: TextField(
-                      controller: _degreeController,
-                      keyboardType: TextInputType.datetime,
-                      decoration: InputDecoration(
-                        border: InputBorder.none,
-                        contentPadding: EdgeInsets.all(screenHeight * 0.015),
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: screenHeight * 0.02),
-                  const Row(
-                    children: [
-                      Text(
-                        'Passout Year',
-                      ),
-                      Text(
-                        '*',
-                        style: TextStyle(
-                          color: Colors.red,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ],
-                  ),
-                  SizedBox(height: screenHeight * 0.01),
-                  Container(
-                    width: screenWidth,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8),
-                      border: Border.all(color: Colors.green),
-                    ),
-                    child: TextField(
-                      controller: _passYearController,
-                      keyboardType: TextInputType.text,
-                      decoration: InputDecoration(
-                        border: InputBorder.none,
-                        contentPadding: EdgeInsets.all(screenHeight * 0.015),
-                      ),
-                    ),
+                  _buildTextField(
+                    controller: _passYearController,
+                    labelText: 'Passout Year',
+                    isValid: _passYearValid,
+                    screenWidth: screenWidth,
+                    screenHeight: screenHeight,
                   ),
                   SizedBox(height: screenHeight * 0.02),
                   Row(
@@ -332,6 +227,52 @@ class _VerificationScreenState extends State<VerificationScreen2> {
           ),
         ),
       ),
+    );
+  }
+
+  Widget _buildTextField({
+    required TextEditingController controller,
+    required String labelText,
+    required bool isValid,
+    required double screenWidth,
+    required double screenHeight,
+  }) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          children: [
+            Text(labelText),
+            Text(
+              '*',
+              style: TextStyle(
+                color: Colors.red,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ],
+        ),
+        SizedBox(height: screenHeight * 0.01),
+        Container(
+          width: screenWidth,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(8),
+            border: Border.all(
+              color: isValid ? Colors.green : Colors.red,
+            ),
+          ),
+          child: TextField(
+            controller: controller,
+            keyboardType: TextInputType.text,
+            decoration: InputDecoration(
+              border: InputBorder.none,
+              contentPadding: EdgeInsets.all(screenHeight * 0.015),
+              errorText: isValid ? null : 'This field cannot be empty',
+            ),
+          ),
+        ),
+        SizedBox(height: screenHeight * 0.02),
+      ],
     );
   }
 }

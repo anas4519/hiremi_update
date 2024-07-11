@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hiremi_version_two/HomePage.dart';
-import 'package:hiremi_version_two/bottomnavigationbar.dart';
-import 'package:hiremi_version_two/verified_page.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'SplashScreen.dart';
 
 
@@ -14,6 +12,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final textTheme = GoogleFonts.poppinsTextTheme();
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
@@ -24,7 +23,9 @@ class MyApp extends StatelessWidget {
         appBarTheme: const AppBarTheme(
           backgroundColor: Colors.white
         ),
-        scaffoldBackgroundColor: Colors.white
+        scaffoldBackgroundColor: Colors.white,
+        textTheme: textTheme,
+        fontFamily: GoogleFonts.poppins().fontFamily,
       ),
 
       home: SplashScreen()
