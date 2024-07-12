@@ -24,8 +24,8 @@ class _NewNavbarState extends State<NewNavbar> {
     super.initState();
     _pages = [
       HomePage(isVerified: widget.isV),
-      const AppliesScreen(),
-      const QueriesScreen(),
+      AppliesScreen(isVerified: widget.isV),
+      QueriesScreen(isVerified: widget.isV,),
       ProfileScreen()
     ];
   }
@@ -101,7 +101,7 @@ class _NewNavbarState extends State<NewNavbar> {
                     SizedBox(
                       width: spacing,
                     ),
-                    _buildNavItem(Icons.person, 'PROFILE', 3),
+                    _buildNavItem(Icons.person_outline, 'PROFILE', 3),
                      SizedBox(width: spacing/2.5,),
                   ],
                 ),
@@ -118,6 +118,7 @@ class _NewNavbarState extends State<NewNavbar> {
           Positioned(
             bottom: 35,
             left: screenWidth*0.405,
+            right: screenWidth*0.405,
               child: CircularPercentIndicator(
             radius: 39,
             lineWidth: 15,

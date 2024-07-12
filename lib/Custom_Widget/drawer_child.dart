@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hiremi_version_two/Edit_Profile_Section/BasicDetails/AddBasicDetails.dart';
 import 'package:hiremi_version_two/Help_Support.dart';
+import 'package:hiremi_version_two/Settings.dart';
 import 'package:hiremi_version_two/about_us.dart';
 
 import 'package:percent_indicator/circular_percent_indicator.dart';
@@ -54,7 +55,11 @@ class DrawerChild extends StatelessWidget {
                         child: Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [
-                            Icon(Icons.check_circle, color: const Color(0xFFC1272D), size: screenWidth * 0.02,),
+                            Icon(
+                              Icons.check_circle,
+                              color: const Color(0xFFC1272D),
+                              size: screenWidth * 0.02,
+                            ),
                             Text(
                               ' Not verified',
                               style: TextStyle(
@@ -72,9 +77,10 @@ class DrawerChild extends StatelessWidget {
                           fontSize: screenWidth * 0.02, color: Colors.grey),
                     ),
                     SizedBox(height: screenHeight * 0.005),
-                    ElevatedButton(
+                    TextButton(
                       onPressed: () {
-                        Navigator.of(context).push(MaterialPageRoute(builder: (ctx)=>const AddBasicDetails()));
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (ctx) => const AddBasicDetails()));
                       },
                       style: ButtonStyle(
                         foregroundColor:
@@ -104,154 +110,111 @@ class DrawerChild extends StatelessWidget {
               ),
               SizedBox(height: screenHeight * 0.04),
               ListTile(
-                leading: Container(
-                  height: screenHeight * 0.04,
-                  width: screenHeight * 0.04,
-                  decoration: BoxDecoration(
-                    color: const Color(0xFFFBEEEE),
-                    borderRadius: BorderRadius.circular(screenHeight * 0.01),
-                  ),
-                  child: const Icon(
-                    Icons.settings,
-                    color: Color(0xFFC1272D),
-                  ),
-                ),
-                title: Text(
-                  'Settings',
-                  style: TextStyle(fontSize: screenWidth * 0.034),
-                ),
-                trailing: Container(
-                  height: screenHeight * 0.03,
-                  width: screenHeight * 0.03,
-                  decoration: BoxDecoration(
-                    color: const Color(0xFFECF5FF),
-                    borderRadius: BorderRadius.circular(screenHeight * 0.015),
-                  ),
-                  child: TextButton(
-                    onPressed: () {},
-                    child: Text(
-                      '>',
-                      style: TextStyle(
-                          fontSize: screenWidth * 0.015,
-                          fontWeight: FontWeight.bold),
+                  leading: Container(
+                    height: screenHeight * 0.04,
+                    width: screenHeight * 0.04,
+                    decoration: BoxDecoration(
+                      color: const Color(0xFFFBEEEE),
+                      borderRadius: BorderRadius.circular(screenHeight * 0.01),
+                    ),
+                    child: const Icon(
+                      Icons.settings,
+                      color: Color(0xFFC1272D),
                     ),
                   ),
-                ),
-              ),
+                  title: Text(
+                    'Settings',
+                    style: TextStyle(fontSize: screenWidth * 0.034),
+                  ),
+                  trailing: IconButton(
+                      style: const ButtonStyle(
+                          backgroundColor:
+                              WidgetStatePropertyAll(Color(0xFFECF5FF))),
+                      onPressed: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (ctx) => SettingsScreen()));
+                      },
+                      icon: const Icon(Icons.navigate_next))),
               SizedBox(height: screenHeight * 0.005),
               ListTile(
-                leading: Container(
-                  height: screenHeight * 0.04,
-                  width: screenHeight * 0.04,
-                  decoration: BoxDecoration(
-                    color: const Color(0xFFFBEEEE),
-                    borderRadius: BorderRadius.circular(screenHeight * 0.01),
-                  ),
-                  child: const Icon(
-                    Icons.lock_open_outlined,
-                    color: Color(0xFFC1272D),
-                  ),
-                ),
-                title: Text(
-                  'Change Password',
-                  style: TextStyle(fontSize: screenWidth * 0.034),
-                ),
-                trailing: Container(
-                  height: screenHeight * 0.03,
-                  width: screenHeight * 0.03,
-                  decoration: BoxDecoration(
-                    color: const Color(0xFFECF5FF),
-                    borderRadius: BorderRadius.circular(screenHeight * 0.015),
-                  ),
-                  child: TextButton(
-                    onPressed: () {},
-                    child: Text(
-                      '>',
-                      style: TextStyle(
-                          fontSize: screenWidth * 0.015,
-                          fontWeight: FontWeight.bold),
+                  leading: Container(
+                    height: screenHeight * 0.04,
+                    width: screenHeight * 0.04,
+                    decoration: BoxDecoration(
+                      color: const Color(0xFFFBEEEE),
+                      borderRadius: BorderRadius.circular(screenHeight * 0.01),
+                    ),
+                    child: const Icon(
+                      Icons.lock_open_outlined,
+                      color: Color(0xFFC1272D),
                     ),
                   ),
-                ),
-              ),
+                  title: Text(
+                    'Change Password',
+                    style: TextStyle(fontSize: screenWidth * 0.034),
+                  ),
+                  trailing: IconButton(
+                      style: const ButtonStyle(
+                          backgroundColor:
+                              WidgetStatePropertyAll(Color(0xFFECF5FF))),
+                      onPressed: () {},
+                      icon: const Icon(Icons.navigate_next))),
               SizedBox(height: screenHeight * 0.005),
               ListTile(
-                leading: Container(
-                  height: screenHeight * 0.04,
-                  width: screenHeight * 0.04,
-                  decoration: BoxDecoration(
-                    color: const Color(0xFFFBEEEE),
-                    borderRadius: BorderRadius.circular(screenHeight * 0.01),
-                  ),
-                  child: const Icon(
-                    Icons.info,
-                    color: Color(0xFFC1272D),
-                  ),
-                ),
-                title: Text(
-                  'About App',
-                  style: TextStyle(fontSize: screenWidth * 0.034),
-                ),
-                trailing: Container(
-                  height: screenHeight * 0.03,
-                  width: screenHeight * 0.03,
-                  decoration: BoxDecoration(
-                    color: const Color(0xFFECF5FF),
-                    borderRadius: BorderRadius.circular(screenHeight * 0.015),
-                  ),
-                  child: TextButton(
-                    onPressed: () {
-                      Navigator.of(context).push(MaterialPageRoute(builder: (ctx)=> const About_Us()));
-                    },
-                    child: Text(
-                      '>',
-                      style: TextStyle(
-                          fontSize: screenWidth * 0.015,
-                          fontWeight: FontWeight.bold),
+                  leading: Container(
+                    height: screenHeight * 0.04,
+                    width: screenHeight * 0.04,
+                    decoration: BoxDecoration(
+                      color: const Color(0xFFFBEEEE),
+                      borderRadius: BorderRadius.circular(screenHeight * 0.01),
+                    ),
+                    child: const Icon(
+                      Icons.info,
+                      color: Color(0xFFC1272D),
                     ),
                   ),
-                ),
-              ),
+                  title: Text(
+                    'About App',
+                    style: TextStyle(fontSize: screenWidth * 0.034),
+                  ),
+                  trailing: IconButton(
+                      style: const ButtonStyle(
+                          backgroundColor:
+                              WidgetStatePropertyAll(Color(0xFFECF5FF))),
+                      onPressed: () {
+                        Navigator.of(context).push(
+                            MaterialPageRoute(builder: (ctx) => const About_Us()));
+                      },
+                      icon: const Icon(Icons.navigate_next))),
               SizedBox(
-                height: screenHeight*0.25,
+                height: screenHeight * 0.25,
               ),
               ListTile(
-                leading: Container(
-                  height: screenHeight * 0.04,
-                  width: screenHeight * 0.04,
-                  decoration: BoxDecoration(
-                    color: const Color(0xFFFBEEEE),
-                    borderRadius: BorderRadius.circular(screenHeight * 0.01),
-                  ),
-                  child: const Icon(
-                    Icons.support_agent_outlined,
-                    color: Color(0xFFC1272D),
-                  ),
-                ),
-                title: Text(
-                  'Help and Support',
-                  style: TextStyle(fontSize: screenWidth * 0.034),
-                ),
-                trailing: Container(
-                  height: screenHeight * 0.03,
-                  width: screenHeight * 0.03,
-                  decoration: BoxDecoration(
-                    color: const Color(0xFFECF5FF),
-                    borderRadius: BorderRadius.circular(screenHeight * 0.015),
-                  ),
-                  child: TextButton(
-                    onPressed: () {
-                      Navigator.of(context).push(MaterialPageRoute(builder: (ctx)=> const HelpSupport()));
-                    },
-                    child: Text(
-                      '>',
-                      style: TextStyle(
-                          fontSize: screenWidth * 0.015,
-                          fontWeight: FontWeight.bold),
+                  leading: Container(
+                    height: screenHeight * 0.04,
+                    width: screenHeight * 0.04,
+                    decoration: BoxDecoration(
+                      color: const Color(0xFFFBEEEE),
+                      borderRadius: BorderRadius.circular(screenHeight * 0.01),
+                    ),
+                    child: const Icon(
+                      Icons.support_agent_outlined,
+                      color: Color(0xFFC1272D),
                     ),
                   ),
-                ),
-              ),
+                  title: Text(
+                    'Help and Support',
+                    style: TextStyle(fontSize: screenWidth * 0.034),
+                  ),
+                  trailing: IconButton(
+                      style: const ButtonStyle(
+                          backgroundColor:
+                              WidgetStatePropertyAll(Color(0xFFECF5FF))),
+                      onPressed: () {
+                        Navigator.of(context).push(
+                            MaterialPageRoute(builder: (ctx) => const HelpSupport()));
+                      },
+                      icon: const Icon(Icons.navigate_next))),
             ],
           ),
         ),

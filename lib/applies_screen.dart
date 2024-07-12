@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:hiremi_version_two/Custom_Widget/drawer_child.dart';
+import 'package:hiremi_version_two/InternshipScreen.dart';
+import 'package:hiremi_version_two/Notofication_screen.dart';
+import 'package:hiremi_version_two/experienced_jobs.dart';
+import 'package:hiremi_version_two/fresherJobs.dart';
 
 class AppliesScreen extends StatefulWidget {
-  const AppliesScreen({Key? key}) : super(key: key);
+  final bool isVerified;
+  const AppliesScreen({Key? key, required this.isVerified}) : super(key: key);
 
   @override
   State<AppliesScreen> createState() => _AppliesScreenState();
@@ -19,14 +25,19 @@ class _AppliesScreenState extends State<AppliesScreen> {
           "Applies",
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
-        leading: IconButton(onPressed: () {}, icon: const Icon(Icons.menu)),
+        
         centerTitle: true,
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context).push(MaterialPageRoute(builder: (ctx)=>const NotificationScreen()));
+            },
             icon: const Icon(Icons.notifications),
           ),
         ],
+      ),
+      drawer: const Drawer(
+        child: DrawerChild(),
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -59,18 +70,18 @@ class _AppliesScreenState extends State<AppliesScreen> {
                 padding:  EdgeInsets.all(screenWidth*0.02),
                 child: TextButton(
                   onPressed: () {
-                    // Handle button tap
+                    Navigator.of(context).push(MaterialPageRoute(builder: (ctx)=> InternshipsScreen(isVerified: widget.isVerified)));
                   },
                   style: ButtonStyle(
-                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                    shape: WidgetStateProperty.all<RoundedRectangleBorder>(
                       RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10.0),
                       ),
                     ),
-                    side: MaterialStateProperty.all<BorderSide>(
+                    side: WidgetStateProperty.all<BorderSide>(
                       const BorderSide(color: Colors.orange, width: 2),
                     ),
-                    padding: MaterialStateProperty.all<EdgeInsets>(
+                    padding: WidgetStateProperty.all<EdgeInsets>(
                       const EdgeInsets.symmetric(vertical: 16, horizontal:20),
                     ),
                   ),
@@ -98,18 +109,18 @@ class _AppliesScreenState extends State<AppliesScreen> {
                 padding:  EdgeInsets.all(screenWidth*0.02),
                 child: TextButton(
                   onPressed: () {
-                    // Handle button tap
+                    Navigator.of(context).push(MaterialPageRoute(builder: (ctx)=> FresherJobs(isVerified: widget.isVerified)));
                   },
                   style: ButtonStyle(
-                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                    shape: WidgetStateProperty.all<RoundedRectangleBorder>(
                       RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10.0),
                       ),
                     ),
-                    side: MaterialStateProperty.all<BorderSide>(
+                    side: WidgetStateProperty.all<BorderSide>(
                       const BorderSide(color: Colors.red, width: 2),
                     ),
-                    padding: MaterialStateProperty.all<EdgeInsets>(
+                    padding: WidgetStateProperty.all<EdgeInsets>(
                       const EdgeInsets.symmetric(vertical: 16, horizontal:20),
                     ),
                   ),
@@ -137,18 +148,18 @@ class _AppliesScreenState extends State<AppliesScreen> {
                 padding: EdgeInsets.all(screenWidth*0.02),
                 child: TextButton(
                   onPressed: () {
-                    // Handle button tap
+                    Navigator.of(context).push(MaterialPageRoute(builder: (ctx)=> const Experienced_Jobs()));
                   },
                   style: ButtonStyle(
-                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                    shape: WidgetStateProperty.all<RoundedRectangleBorder>(
                       RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10.0),
                       ),
                     ),
-                    side: MaterialStateProperty.all<BorderSide>(
+                    side: WidgetStateProperty.all<BorderSide>(
                       const BorderSide(color: Colors.purpleAccent, width: 2),
                     ),
-                    padding: MaterialStateProperty.all<EdgeInsets>(
+                    padding: WidgetStateProperty.all<EdgeInsets>(
                       const EdgeInsets.symmetric(vertical: 16, horizontal:20),
                     ),
                   ),

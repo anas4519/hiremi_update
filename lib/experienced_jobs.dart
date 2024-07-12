@@ -10,8 +10,6 @@ class Experienced_Jobs extends StatefulWidget {
 class _Experienced_JobsState extends State<Experienced_Jobs> {
 
   @override
-
-
   Widget build(BuildContext context) {
     final screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(

@@ -1,13 +1,41 @@
 import 'package:flutter/material.dart';
+import 'package:hiremi_version_two/Custom_Widget/Custom_alert_box.dart';
+import 'package:hiremi_version_two/Custom_Widget/custom_alert1.dart';
 
 class QueriesScreen extends StatefulWidget {
-  const QueriesScreen({Key? key, }) : super(key: key);
+  final bool isVerified;
+  const QueriesScreen({Key? key, required this.isVerified}) : super(key: key);
 
   @override
   State<QueriesScreen> createState() => _QueriesScreenState();
 }
 
 class _QueriesScreenState extends State<QueriesScreen> {
+  @override
+  void initState() {
+    super.initState();
+    if (!widget.isVerified) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        _showVerificationDialog();
+      });
+    }
+  }
+
+  void _showVerificationDialog() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+            contentPadding: EdgeInsets.zero,
+            backgroundColor: Colors.white,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(20),
+            ),
+            content: const CustomAlertbox());
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
@@ -30,7 +58,7 @@ class _QueriesScreenState extends State<QueriesScreen> {
         ],
       ),
       body: Padding(
-        padding: EdgeInsets.all(screenWidth*0.02),
+        padding: EdgeInsets.all(screenWidth * 0.02),
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -40,7 +68,6 @@ class _QueriesScreenState extends State<QueriesScreen> {
                   padding: EdgeInsets.all(screenHeight * 0.00),
                   child: Image.asset(
                     'images/At the office-pana.png',
-                    
                   ),
                 ),
               ),
@@ -73,11 +100,13 @@ class _QueriesScreenState extends State<QueriesScreen> {
                   Padding(
                     padding: const EdgeInsets.fromLTRB(10.0, 2.0, 10.0, 0),
                     child: TextFormField(
-                      style: const TextStyle(fontSize: 12.0), // Adjusted font size
+                      style:
+                          const TextStyle(fontSize: 12.0), // Adjusted font size
                       decoration: InputDecoration(
                         hintText: 'Full Name',
                         contentPadding: const EdgeInsets.symmetric(
-                            vertical: 8.0, horizontal: 8.0), // Adjust padding here
+                            vertical: 8.0,
+                            horizontal: 8.0), // Adjust padding here
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(5),
                         ),
@@ -110,11 +139,13 @@ class _QueriesScreenState extends State<QueriesScreen> {
                   Padding(
                     padding: const EdgeInsets.fromLTRB(10.0, 2.0, 10.0, 0),
                     child: TextFormField(
-                      style: const TextStyle(fontSize: 12.0), // Adjusted font size
+                      style:
+                          const TextStyle(fontSize: 12.0), // Adjusted font size
                       decoration: InputDecoration(
                         hintText: 'Email Address',
                         contentPadding: const EdgeInsets.symmetric(
-                            vertical: 8.0, horizontal: 8.0), // Adjust padding here
+                            vertical: 8.0,
+                            horizontal: 8.0), // Adjust padding here
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(5),
                         ),
@@ -147,7 +178,8 @@ class _QueriesScreenState extends State<QueriesScreen> {
                   Padding(
                     padding: const EdgeInsets.fromLTRB(10.0, 2.0, 10.0, 0),
                     child: TextFormField(
-                      style: const TextStyle(fontSize: 12.0), // Adjusted font size
+                      style:
+                          const TextStyle(fontSize: 12.0), // Adjusted font size
                       decoration: InputDecoration(
                         prefixIcon: const Icon(
                           Icons.calendar_today,
@@ -155,7 +187,8 @@ class _QueriesScreenState extends State<QueriesScreen> {
                         ),
                         hintText: 'Date of Birth',
                         contentPadding: const EdgeInsets.symmetric(
-                            vertical: 8.0, horizontal: 8.0), // Adjust padding here
+                            vertical: 8.0,
+                            horizontal: 8.0), // Adjust padding here
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(5),
                         ),
@@ -188,12 +221,14 @@ class _QueriesScreenState extends State<QueriesScreen> {
                   Padding(
                     padding: const EdgeInsets.fromLTRB(10.0, 2.0, 10.0, 0),
                     child: TextFormField(
-                      style: const TextStyle(fontSize: 12.0), // Adjusted font size
+                      style:
+                          const TextStyle(fontSize: 12.0), // Adjusted font size
                       decoration: InputDecoration(
                         suffixIcon: const Icon(Icons.arrow_drop_down),
                         hintText: 'Career Problem',
                         contentPadding: const EdgeInsets.symmetric(
-                            vertical: 8.0, horizontal: 8.0), // Adjust padding here
+                            vertical: 8.0,
+                            horizontal: 8.0), // Adjust padding here
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(5),
                         ),
@@ -218,11 +253,13 @@ class _QueriesScreenState extends State<QueriesScreen> {
                     padding: const EdgeInsets.fromLTRB(10.0, 2.0, 10.0, 0),
                     child: TextFormField(
                       maxLines: 3,
-                      style: const TextStyle(fontSize: 12.0), // Adjusted font size
+                      style:
+                          const TextStyle(fontSize: 12.0), // Adjusted font size
                       decoration: InputDecoration(
                         hintText: 'Your Problem',
                         contentPadding: const EdgeInsets.symmetric(
-                            vertical: 8.0, horizontal: 8.0), // Adjust padding here
+                            vertical: 8.0,
+                            horizontal: 8.0), // Adjust padding here
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(5),
                         ),
@@ -232,7 +269,22 @@ class _QueriesScreenState extends State<QueriesScreen> {
                   SizedBox(height: screenHeight * 0.01),
                   Center(
                     child: ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        if (!widget.isVerified) {
+                          showDialog(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return AlertDialog(
+                                  contentPadding: EdgeInsets.zero,
+                                  backgroundColor: Colors.white,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(20),
+                                  ),
+                                  content: const CustomAlertbox());
+                            },
+                          );
+                        }
+                      },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: const Color(0xFFC1272D),
                         shape: RoundedRectangleBorder(
@@ -245,7 +297,8 @@ class _QueriesScreenState extends State<QueriesScreen> {
                       ),
                     ),
                   ),
-                  SizedBox(height: screenHeight * 0.02), // Adjusted bottom space
+                  SizedBox(
+                      height: screenHeight * 0.02), // Adjusted bottom space
                 ],
               ),
             ],
