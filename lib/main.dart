@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hiremi_version_two/Help_Support.dart';
 import 'package:hiremi_version_two/Settings.dart';
+import 'package:hiremi_version_two/verify_new.dart';
 import 'SplashScreen.dart';
 
 
@@ -21,6 +22,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         drawerTheme: const DrawerThemeData(
           backgroundColor: Colors.white
+          
         ),
         appBarTheme: const AppBarTheme(
           backgroundColor: Colors.white

@@ -70,3 +70,4 @@ flutter:
     - family: FontMain
       fonts:
         - asset: assets/fonts/Poppins-Bold.ttf
+        - asset: assets/fonts/MyIcons.ttf

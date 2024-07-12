@@ -1,18 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:hiremi_version_two/Controller/Register_controller.dart';
+import 'package:hiremi_version_two/Custom_Widget/Curved_Container.dart';
+import 'package:hiremi_version_two/Custom_Widget/Elevated_Button.dart';
+import 'package:hiremi_version_two/Custom_Widget/SliderPageRoute.dart';
+import 'package:hiremi_version_two/Login.dart';
 import 'package:hiremi_version_two/Models/register_model.dart';
-import 'package:hiremi_version_two/verification_screens/verifiaction_screen2.dart';
+import 'package:hiremi_version_two/verification_screens/verification_screen1.dart';
 import 'package:intl/intl.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 
-class VerificationScreen1 extends StatefulWidget {
-  const VerificationScreen1({Key? key}) : super(key: key);
+class VerifyNew extends StatefulWidget {
+  const VerifyNew({Key? key}) : super(key: key);
 
   @override
-  State<VerificationScreen1> createState() => _VerificationScreen1State();
+  State<VerifyNew> createState() => _VerifyNewState();
 }
 
-class _VerificationScreen1State extends State<VerificationScreen1> {
-final _formKey = GlobalKey<FormState>();
+class _VerifyNewState extends State<VerifyNew> {
+  final _formKey = GlobalKey<FormState>();
   Gender? _selectedGender = Gender.Male;
   String? _selectedState;
   DateTime? _selectedDate;
@@ -74,6 +79,7 @@ final _formKey = GlobalKey<FormState>();
   final TextEditingController _confirmPasswordController =
       TextEditingController();
 
+  RegistrationController _registrationController = RegistrationController();
 
   void _handleGenderChange(Gender? value) {
     setState(() {
@@ -128,9 +134,9 @@ final _formKey = GlobalKey<FormState>();
                   CircularPercentIndicator(
                     radius: screenHeight * 0.05,
                     lineWidth: 6,
-                    percent: 0.5,
+                    percent: 0.25,
                     center: const Text(
-                      '50%',
+                      '25%',
                       style: TextStyle(
                           color: Colors.green, fontWeight: FontWeight.bold),
                     ),
@@ -196,127 +202,228 @@ final _formKey = GlobalKey<FormState>();
                       Padding(
                         padding: EdgeInsets.all(screenWidth*0.04),
                         child: const Text(
-                          'Contact Information',
+                          'Personal Information',
                           style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                           textAlign: TextAlign.start,
                         ),
                       ),
                       SizedBox(height: screenHeight * 0.01),
+                      buildLabeledTextField(
+                        context,
+                        "Full Name",
+                        "John Doe",
+                        controller: _fullNameController,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please enter your full name';
+                          }
+                          return null;
+                        },
+                      ),
+                      buildLabeledTextField(
+                        context,
+                        "Father's Full Name",
+                        "Robert Dave",
+                        controller: _fatherNameController,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please enter your father\'s full name';
+                          }
+                          return null;
+                        },
+                      ),
+                      buildGenderField(),
+                      buildLabeledTextField(
+                        context,
+                        "Email Address",
+                        "yourEmail@gmail.com",
+                        controller: _emailController,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please enter your email address';
+                          }
+                          if (!RegExp(r'^[^@]+@[^@]+\.[^@]+').hasMatch(value)) {
+                            return 'Please enter a valid email address';
+                          }
+                          return null;
+                        },
+                      ),
+                      buildLabeledTextField(
+                        context,
+                        "Date Of Birth",
+                        "DD/MM/YYYY",
+                        showPositionedBox: true,
+                        prefixIcon: Icons.calendar_today,
+                        controller: _dobController,
+                        validator: (value) {
+                          if (_selectedDate == null) {
+                            return 'Please select your date of birth';
+                          }
+                          return null;
+                        },
+                        onTap: () async {
+                          final DateTime? pickedDate = await showDatePicker(
+                            context: context,
+                            initialDate: DateTime.now(),
+                            firstDate: DateTime(1900),
+                            lastDate: DateTime.now(),
+                          );
+                          if (pickedDate != null) {
+                            setState(() {
+                              _selectedDate = pickedDate;
+                              _dobController.text =
+                                  DateFormat('yyyy-MM-dd').format(pickedDate);
+                            });
+                          }
+                        },
+                      ),
+                      buildLabeledTextField(
+                        context,
+                        "Birth Place",
+                        "Select State",
+                        controller: _birthPlaceController,
+                        dropdownItems: _states,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please enter your birth place';
+                          }
+                          return null;
+                        },
+                      ),
+                      // buildSectionHeader("Contact Information"),
                       // buildLabeledTextField(
                       //   context,
-                      //   "Full Name",
-                      //   "John Doe",
-                      //   controller: _fullNameController,
+                      //   "Phone Number",
+                      //   "+91",
+                      //   keyboardType: TextInputType.phone,
+                      //   controller: _phoneController,
                       //   validator: (value) {
                       //     if (value == null || value.isEmpty) {
-                      //       return 'Please enter your full name';
+                      //       return 'Please enter your phone number';
+                      //     }
+                      //     if (value.length < 10) {
+                      //       return 'Please enter a valid phone number';
                       //     }
                       //     return null;
                       //   },
                       // ),
                       // buildLabeledTextField(
                       //   context,
-                      //   "Father's Full Name",
-                      //   "Robert Dave",
-                      //   controller: _fatherNameController,
+                      //   "WhatsApp Number",
+                      //   "+91",
+                      //   keyboardType: TextInputType.phone,
+                      //   controller: _whatsappController,
                       //   validator: (value) {
                       //     if (value == null || value.isEmpty) {
-                      //       return 'Please enter your father\'s full name';
+                      //       return 'Please enter your WhatsApp number';
+                      //     }
+                      //     if (value.length < 10) {
+                      //       return 'Please enter a valid WhatsApp number';
                       //     }
                       //     return null;
                       //   },
                       // ),
-                      // buildGenderField(),
+                      // buildSectionHeader("Educational Information"),
                       // buildLabeledTextField(
                       //   context,
-                      //   "Email Address",
-                      //   "yourEmail@gmail.com",
-                      //   controller: _emailController,
+                      //   "College Name",
+                      //   "Enter Your College Name",
+                      //   controller: _collegeNameController,
                       //   validator: (value) {
                       //     if (value == null || value.isEmpty) {
-                      //       return 'Please enter your email address';
-                      //     }
-                      //     if (!RegExp(r'^[^@]+@[^@]+\.[^@]+').hasMatch(value)) {
-                      //       return 'Please enter a valid email address';
+                      //       return 'Please enter your college name';
                       //     }
                       //     return null;
                       //   },
                       // ),
+                      // //buildStateDropdown(),
                       // buildLabeledTextField(
                       //   context,
-                      //   "Date Of Birth",
-                      //   "DD/MM/YYYY",
-                      //   showPositionedBox: true,
-                      //   prefixIcon: Icons.calendar_today,
-                      //   controller: _dobController,
-                      //   validator: (value) {
-                      //     if (_selectedDate == null) {
-                      //       return 'Please select your date of birth';
-                      //     }
-                      //     return null;
-                      //   },
-                      //   onTap: () async {
-                      //     final DateTime? pickedDate = await showDatePicker(
-                      //       context: context,
-                      //       initialDate: DateTime.now(),
-                      //       firstDate: DateTime(1900),
-                      //       lastDate: DateTime.now(),
-                      //     );
-                      //     if (pickedDate != null) {
-                      //       setState(() {
-                      //         _selectedDate = pickedDate;
-                      //         _dobController.text =
-                      //             DateFormat('yyyy-MM-dd').format(pickedDate);
-                      //       });
-                      //     }
-                      //   },
-                      // ),
-                      // buildLabeledTextField(
-                      //   context,
-                      //   "Birth Place",
-                      //   "Select State",
-                      //   controller: _birthPlaceController,
+                      //   "College's State",
+                      //   "Enter Your College's State",
+                      //   controller: _collegeStateController,
                       //   dropdownItems: _states,
                       //   validator: (value) {
                       //     if (value == null || value.isEmpty) {
-                      //       return 'Please enter your birth place';
+                      //       return "Please enter your College's State";
                       //     }
                       //     return null;
                       //   },
                       // ),
-                      // buildSectionHeader("Contact Information"),
-                      buildLabeledTextField(
-                        context,
-                        "Phone Number",
-                        "+91",
-                        keyboardType: TextInputType.phone,
-                        controller: _phoneController,
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return 'Please enter your phone number';
-                          }
-                          if (value.length < 10) {
-                            return 'Please enter a valid phone number';
-                          }
-                          return null;
-                        },
-                      ),
-                      buildLabeledTextField(
-                        context,
-                        "WhatsApp Number",
-                        "+91",
-                        keyboardType: TextInputType.phone,
-                        controller: _whatsappController,
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return 'Please enter your WhatsApp number';
-                          }
-                          if (value.length < 10) {
-                            return 'Please enter a valid WhatsApp number';
-                          }
-                          return null;
-                        },
-                      ),
+                      // buildLabeledTextField(
+                      //   context,
+                      //   "Branch",
+                      //   "Enter Your Branch Name",
+                      //   controller: _branchController,
+                      //   dropdownItems: ['Degree 1', 'Degree 2', 'Degree 3'],
+                      //   validator: (value) {
+                      //     if (value == null || value.isEmpty) {
+                      //       return 'Please enter your branch';
+                      //     }
+                      //     return null;
+                      //   },
+                      // ),
+                      // buildLabeledTextField(
+                      //   context,
+                      //   "Degree",
+                      //   "Enter Your Degree Name",
+                      //   controller: _degreeController,
+                      //   dropdownItems: ['Degree 1', 'Degree 2', 'Degree 3'],
+                      //   validator: (value) {
+                      //     if (value == null || value.isEmpty) {
+                      //       return 'Please enter your degree';
+                      //     }
+                      //     return null;
+                      //   },
+                      // ),
+                      // buildLabeledTextField(
+                      //   context,
+                      //   "Passing Year",
+                      //   "Enter Your Passing Year",
+                      //   controller: _passingYearController,
+                  
+                      //   dropdownItems: ['2012', '2024', '2025'],
+                      //   validator: (value) {
+                      //     if (value == null || value.isEmpty) {
+                      //       return 'Please enter your passing year';
+                      //     }
+                      //     return null;
+                      //   },
+                      // ),
+                      // buildSectionHeader("Let's Create Password"),
+                  
+                      // buildLabeledTextField(
+                      //   context,
+                      //   "Password",
+                      //   "Enter Your Password",
+                      //   obscureText: true,
+                      //   controller: _passwordController,
+                      //   validator: (value) {
+                      //     if (value == null || value.isEmpty) {
+                      //       return 'Please enter your password';
+                      //     }
+                      //     if (value.length < 8) {
+                      //       return 'Password must be at least 8 characters long';
+                      //     }
+                      //     return null;
+                      //   },
+                      // ),
+                      // buildLabeledTextField(
+                      //   context,
+                      //   "Confirm Password",
+                      //   "Enter Your Password",
+                      //   obscureText: true,
+                      //   controller: _confirmPasswordController,
+                      //   validator: (value) {
+                      //     if (value == null || value.isEmpty) {
+                      //       return 'Please enter your password';
+                      //     }
+                      //     if (value != _passwordController.text) {
+                      //       return 'Passwords do not match';
+                      //     }
+                      //     return null;
+                      //   },
+                      // ),
                       SizedBox(height: MediaQuery.of(context).size.height * 0.02),
                       Row(
                         children: [
@@ -330,7 +437,7 @@ final _formKey = GlobalKey<FormState>();
                                 onPressed: () {
                                   if (_isAllFieldsValid()) {
                                     Navigator.of(context).push(MaterialPageRoute(
-                                        builder: (ctx) => const VerificationScreen2()));
+                                        builder: (ctx) => const VerificationScreen1()));
                                   } else {
                                     setState(() {});
                                   }
@@ -345,7 +452,7 @@ final _formKey = GlobalKey<FormState>();
                             ),
                         ],
                       ),
-                      const SizedBox(height: 70),
+                      SizedBox(height: MediaQuery.of(context).size.height * 0.025),
                     ],
                   ),
                 ),
@@ -525,3 +632,4 @@ final _formKey = GlobalKey<FormState>();
     );
   }
 }
+

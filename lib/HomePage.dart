@@ -13,6 +13,8 @@ import 'package:hiremi_version_two/Custom_Widget/verification_status.dart';
 import 'package:hiremi_version_two/Fresher_Jobs.dart';
 import 'package:hiremi_version_two/InternshipScreen.dart';
 import 'package:hiremi_version_two/Notofication_screen.dart';
+import 'package:hiremi_version_two/Utils/AppSizes.dart';
+import 'package:hiremi_version_two/Utils/colors.dart';
 import 'package:hiremi_version_two/experienced_jobs.dart';
 import 'package:hiremi_version_two/fresherJobs.dart';
 
@@ -70,9 +72,28 @@ class _HomePageState extends State<HomePage> {
 
     return Scaffold(
       backgroundColor: Colors.white,
-      drawer: const Drawer(backgroundColor: Colors.white,child: DrawerChild(),),
+      
       appBar: AppBar(
         backgroundColor: Colors.white,
+        // leading: Padding(
+        // padding: EdgeInsets.all(screenWidth*0.02),
+        // child: GestureDetector(
+        //   onTap: () {
+        //     Scaffold.of(context).openDrawer();
+        //   },
+        //   child: Container(
+        //       padding: EdgeInsets.all(Sizes.responsiveSm(context)),
+        //       decoration: BoxDecoration(
+        //         borderRadius: BorderRadius.circular(8.0),
+        //         color: AppColors.bgBlue,
+        //       ),
+        //       child: const Icon(
+        //         Icons.notes_rounded,
+        //         size: 22,
+        //       )),
+        // )
+        // ),
+        
         title: const Text(
           "Hiremi's Home",
           style: TextStyle(fontWeight: FontWeight.bold),
@@ -89,6 +110,8 @@ class _HomePageState extends State<HomePage> {
           ),
         ],
       ),
+      drawer: const Drawer(backgroundColor: Colors.white,child: DrawerChild(),),
+      
       body: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.all(screenWidth * 0.04),

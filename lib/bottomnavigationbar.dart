@@ -86,23 +86,25 @@ class _NewNavbarState extends State<NewNavbar> {
               ),
               child: Padding(
                 padding: const EdgeInsets.all(16),
+
                 child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    SizedBox(width: spacing/2.5,),
+                    // SizedBox(width: spacing/2.5,),
                     _buildNavItem(Icons.home_filled, 'HOME', 0),
+                    // SizedBox(
+                    //   width: spacing,
+                    // ),
+                    _buildNavItem(Icons.event_note_outlined, 'APPLIES', 1),
                     SizedBox(
-                      width: spacing,
-                    ),
-                    _buildNavItem(Icons.event_note, 'APPLIES', 1),
-                    SizedBox(
-                      width: spacing*2.4,
+                      width: spacing*1.5,
                     ),
                     _buildNavItem(Icons.local_activity_outlined, 'QUERIES', 2),
-                    SizedBox(
-                      width: spacing,
-                    ),
+                    // SizedBox(
+                    //   width: spacing,
+                    // ),
                     _buildNavItem(Icons.person_outline, 'PROFILE', 3),
-                     SizedBox(width: spacing/2.5,),
+                    //  SizedBox(width: spacing/2.5,),
                   ],
                 ),
               ),
@@ -117,8 +119,8 @@ class _NewNavbarState extends State<NewNavbar> {
           //     ),
           Positioned(
             bottom: 35,
-            left: screenWidth*0.405,
-            right: screenWidth*0.405,
+            left: screenWidth*0.5,
+            right: screenWidth*0.5,
               child: CircularPercentIndicator(
             radius: 39,
             lineWidth: 15,

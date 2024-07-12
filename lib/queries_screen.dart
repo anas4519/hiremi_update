@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:hiremi_version_two/Custom_Widget/Custom_alert_box.dart';
-import 'package:hiremi_version_two/Custom_Widget/custom_alert1.dart';
 
 class QueriesScreen extends StatefulWidget {
   final bool isVerified;
