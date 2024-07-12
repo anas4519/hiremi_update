@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 class SettingsScreen extends StatefulWidget {
   @override
   State<SettingsScreen> createState() => _SettingsScreenState();
@@ -93,7 +92,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 height: screenHeight * 0.01,
               ),
               Container(
-                
+                height: 70,
                 width: 520,
                 decoration: BoxDecoration(
                     border: Border.all(color: Colors.black),
@@ -140,7 +139,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 height: screenHeight * 0.02,
               ),
               Container(
-                
                 width: 520,
                 decoration: BoxDecoration(
                     border: Border.all(color: Colors.black),

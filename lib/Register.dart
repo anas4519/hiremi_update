@@ -22,7 +22,49 @@ class _RegistersState extends State<Registers> {
   String? _selectedState;
   DateTime? _selectedDate;
 
-  List<String> _states = ['State 1', 'State 2', 'State 3', 'State 4'];
+  // List<String> _states = ['State 1', 'State 2', 'State 3', 'State 4'];
+  
+
+
+final List<String> _states = [
+  'Andhra Pradesh',
+  'Arunachal Pradesh',
+  'Assam',
+  'Bihar',
+  'Chhattisgarh',
+  'Goa',
+  'Gujarat',
+  'Haryana',
+  'Himachal Pradesh',
+  'Jharkhand',
+  'Karnataka',
+  'Kerala',
+  'Madhya Pradesh',
+  'Maharashtra',
+  'Manipur',
+  'Meghalaya',
+  'Mizoram',
+  'Nagaland',
+  'Odisha',
+  'Punjab',
+  'Rajasthan',
+  'Sikkim',
+  'Tamil Nadu',
+  'Telangana',
+  'Tripura',
+  'Uttar Pradesh',
+  'Uttarakhand',
+  'West Bengal',
+  'Andaman and Nicobar Islands',
+  'Chandigarh',
+  'Dadra and Nagar Haveli and Daman and Diu',
+  'Delhi',
+  'Jammu and Kashmir',
+  'Ladakh',
+  'Lakshadweep',
+  'Puducherry',
+];
+
 
   final TextEditingController _fullNameController = TextEditingController();
   final TextEditingController _fatherNameController = TextEditingController();
@@ -68,7 +110,7 @@ class _RegistersState extends State<Registers> {
 
   @override
   Widget build(BuildContext context) {
-    print("Hello");
+    
     double imageSize = MediaQuery.of(context).size.width * 0.6;
     double imageHeight = MediaQuery.of(context).size.height * 0.157;
 
@@ -86,7 +128,7 @@ class _RegistersState extends State<Registers> {
             Center(
               child: RichText(
                 textAlign: TextAlign.center,
-                text: TextSpan(
+                text: const TextSpan(
                   children: [
                     TextSpan(
                       text: "Register to get started\n",
@@ -192,6 +234,7 @@ class _RegistersState extends State<Registers> {
                       "Birth Place",
                       "Select State",
                       controller: _birthPlaceController,
+                      dropdownItems: _states,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return 'Please enter your birth place';
@@ -251,7 +294,7 @@ class _RegistersState extends State<Registers> {
                       "College's State",
                       "Enter Your College's State",
                       controller: _collegeStateController,
-                      dropdownItems: ['Degree 1', 'Degree 2', 'Degree 3'],
+                      dropdownItems: _states,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return "Please enter your College's State";
@@ -364,13 +407,13 @@ class _RegistersState extends State<Registers> {
                             // Registration successful, navigate to login or next screen
                             Navigator.pushReplacement(
                               context,
-                              SlidePageRoute(page: LogIn()),
+                              SlidePageRoute(page: const LogIn()),
                             );
                           }
                           else {
                             // Show error message to user
                             ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(
+                              const SnackBar(
                                 content: Text('Registration failed. Please try again.'),
                                 duration: Duration(seconds: 3),
                               ),
@@ -396,7 +439,7 @@ class _RegistersState extends State<Registers> {
       padding: EdgeInsets.symmetric(vertical: MediaQuery.of(context).size.height * 0.02),
       child: Text(
         title,
-        style: TextStyle(
+        style: const TextStyle(
           fontSize: 20,
           fontWeight: FontWeight.bold,
           color: Colors.black,
@@ -509,9 +552,9 @@ class _RegistersState extends State<Registers> {
               children: [
                 TextSpan(
                   text: label,
-                  style: TextStyle(color: Colors.black),
+                  style: const TextStyle(color: Colors.black),
                 ),
-                TextSpan(
+                const TextSpan(
                   text: " *",
                   style: TextStyle(color: Colors.red),
                 ),
@@ -525,6 +568,7 @@ class _RegistersState extends State<Registers> {
           child: dropdownItems != null
               ? DropdownButtonFormField<String>(
             decoration: InputDecoration(
+              
               hintText: hintText,
               prefixIcon: prefixIcon != null ? Icon(prefixIcon) : null,
               border: OutlineInputBorder(
@@ -540,11 +584,13 @@ class _RegistersState extends State<Registers> {
             },
             items: dropdownItems.map((String item) {
               return DropdownMenuItem<String>(
+                
                 value: item,
                 child: Text(item),
               );
             }).toList(),
             validator: validator,
+            isExpanded: true,
           )
               : TextFormField(
             controller: controller,
@@ -575,7 +621,7 @@ class _RegistersState extends State<Registers> {
         Padding(
           padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width * 0.12),
           child: RichText(
-            text: TextSpan(
+            text: const TextSpan(
               children: [
                 TextSpan(
                   text: 'Gender',
@@ -598,19 +644,19 @@ class _RegistersState extends State<Registers> {
                 groupValue: _selectedGender,
                 onChanged: _handleGenderChange,
               ),
-              Text('Male'),
+              const Text('Male'),
               Radio(
                 value: Gender.Female,
                 groupValue: _selectedGender,
                 onChanged: _handleGenderChange,
               ),
-              Text('Female'),
+              const Text('Female'),
               Radio(
                 value: Gender.Other,
                 groupValue: _selectedGender,
                 onChanged: _handleGenderChange,
               ),
-              Text('Other'),
+              const Text('Other'),
             ],
           ),
         ),

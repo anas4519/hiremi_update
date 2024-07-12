@@ -53,7 +53,7 @@ class _LogInState extends State<LogIn> {
               Center(
                 child: RichText(
                   textAlign: TextAlign.center,
-                  text: TextSpan(
+                  text: const TextSpan(
                     children: [
                       TextSpan(
                         text: "Let's sign you in,\n",
@@ -88,7 +88,7 @@ class _LogInState extends State<LogIn> {
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width * 0.1),
                       child: RichText(
-                        text: TextSpan(
+                        text: const TextSpan(
                           children: [
                             TextSpan(
                               text: "Email Address",
@@ -107,7 +107,7 @@ class _LogInState extends State<LogIn> {
                     SizedBox(height: MediaQuery.of(context).size.height * 0.0215),
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width * 0.1),
-                      child: CurvedTextField(
+                      child: const CurvedTextField(
                         hintText: "youremail@gmail.com",
                         prefixIcon: Icons.account_circle,
                         obscureText: false,
@@ -118,7 +118,7 @@ class _LogInState extends State<LogIn> {
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width * 0.1),
                       child: RichText(
-                        text: TextSpan(
+                        text: const TextSpan(
                           children: [
                             TextSpan(
                               text: "Password",
@@ -137,7 +137,7 @@ class _LogInState extends State<LogIn> {
                     SizedBox(height: MediaQuery.of(context).size.height * 0.0205),
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width * 0.1),
-                      child: CurvedTextField(
+                      child: const CurvedTextField(
                         hintText: "********",
                         prefixIcon: Icons.lock,
                         obscureText: true,
@@ -154,10 +154,10 @@ class _LogInState extends State<LogIn> {
                         onPressed: () {
                           Navigator.push(
                             context,
-                            SlidePageRoute(page: Forget_Your_Password()),
+                            SlidePageRoute(page: const Forget_Your_Password()),
                           );
                         },
-                        child: Text(
+                        child: const Text(
                           'Forget Password?',
 
                           style: TextStyle(color: Colors.blueAccent), // Adjust text color as needed
@@ -174,13 +174,13 @@ class _LogInState extends State<LogIn> {
                         onPressed: () {
                           Navigator.push(
                             context,
-                            SlidePageRoute(page: NewNavbar(isV: false,)),
+                            SlidePageRoute(page: const NewNavbar(isV: false,)),
                           );
                         },
                       ),
                     ),
                     SizedBox(height: MediaQuery.of(context).size.height * 0.009),
-                    Center(child: Text("By clicking Login, you agree to Hiremi’s Terms & Conditions.",style: TextStyle(
+                    const Center(child: Text("By clicking Login, you agree to Hiremi’s Terms & Conditions.",style: TextStyle(
                       fontSize: 12,
                       fontWeight: FontWeight.w500
                     ),)),
@@ -189,7 +189,7 @@ class _LogInState extends State<LogIn> {
                       padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width * 0.1),
                       child: Row(
                         children: [
-                          Expanded(
+                          const Expanded(
                             child: Divider(
                               color: Colors.grey,
                               thickness: 1,
@@ -197,7 +197,7 @@ class _LogInState extends State<LogIn> {
                           ),
                           Padding(
                             padding: EdgeInsets.symmetric(horizontal:  MediaQuery.of(context).size.width * 0.01),
-                            child: Text(
+                            child: const Text(
                               "or",
                               style: TextStyle(
                                 color: Colors.grey,
@@ -205,7 +205,7 @@ class _LogInState extends State<LogIn> {
                               ),
                             ),
                           ),
-                          Expanded(
+                          const Expanded(
                             child: Divider(
                               color: Colors.grey,
                               thickness: 1,
@@ -217,11 +217,11 @@ class _LogInState extends State<LogIn> {
                     SizedBox(height: MediaQuery.of(context).size.height * 0.018),
                     Center(
                       child: CustomElevatedButton(
-                        color: Color(0xFFF5F4F4),
+                        color: const Color(0xFFF5F4F4),
                         width: MediaQuery.of(context).size.width * 0.775,
                         height: MediaQuery.of(context).size.height * 0.0625,
                         text: 'Register Now',
-                        textStyle: TextStyle(
+                        textStyle: const TextStyle(
                           color: Colors.black,
                           fontWeight: FontWeight.w400
 
@@ -229,7 +229,7 @@ class _LogInState extends State<LogIn> {
                         onPressed: () {
                           Navigator.push(
                             context,
-                            SlidePageRoute(page: Registers()),
+                            SlidePageRoute(page: const Registers()),
                           );
                         },
                       ),
