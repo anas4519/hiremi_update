@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:hiremi_version_two/Custom_Widget/Custom_alert_box.dart';
+import 'package:hiremi_version_two/Custom_Widget/custom_alert1.dart';
 import 'package:hiremi_version_two/HomePage.dart';
 import 'package:hiremi_version_two/Profile_Screen.dart';
 
 import 'package:hiremi_version_two/applies_screen.dart';
 import 'package:hiremi_version_two/queries_screen.dart';
+import 'package:hiremi_version_two/verified_popup.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 
 class NewNavbar extends StatefulWidget {
@@ -28,6 +31,25 @@ class _NewNavbarState extends State<NewNavbar> {
       QueriesScreen(isVerified: widget.isV,),
       ProfileScreen()
     ];
+    if (widget.isV) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        _showVerificationDialog();
+      });
+    }
+  }
+  void _showVerificationDialog() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+            contentPadding: EdgeInsets.zero,
+            backgroundColor: Colors.white,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(20),
+            ),
+            content: const VerifiedPopup());
+      },
+    );
   }
 
   void _onItemTapped(int index) {
