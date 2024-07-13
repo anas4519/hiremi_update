@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hiremi_version_two/Custom_Widget/OppurtunityCard.dart';
 import 'package:hiremi_version_two/Notofication_screen.dart';
+import 'package:hiremi_version_two/Utils/colors.dart';
 
 class FresherJobs extends StatelessWidget {
   const FresherJobs({Key? key, required this.isVerified}) : super(key: key);
@@ -20,11 +21,15 @@ class FresherJobs extends StatelessWidget {
         centerTitle: true,
         actions: [
           IconButton(
-              onPressed: () {
-                Navigator.of(context).push(
-                    MaterialPageRoute(builder: (ctx) => const NotificationScreen()));
-              },
-              icon: const Icon(Icons.notifications))
+            onPressed: () {
+              Navigator.of(context).push(MaterialPageRoute(
+                builder: (ctx) => const NotificationScreen(),
+              ));
+            },
+            icon: const Icon(Icons.notifications_outlined),
+            style: ButtonStyle(
+                backgroundColor: WidgetStatePropertyAll(AppColors.bgBlue)),
+          ),
         ],
       ),
       body: SingleChildScrollView(
@@ -67,7 +72,8 @@ class FresherJobs extends StatelessWidget {
                       Text(
                         'Fresher Jobs',
                         style: TextStyle(
-                            fontSize: screenWidth * 0.045, // 4.5% of screen width
+                            fontSize:
+                                screenWidth * 0.045, // 4.5% of screen width
                             color: Colors.white),
                       ),
                       const Spacer(),
@@ -94,8 +100,8 @@ class FresherJobs extends StatelessWidget {
                     alignment: Alignment.centerLeft,
                     child: Text(
                       'Available Fresher Jobs (1)',
-                      style: TextStyle(
-                          fontSize: 16, fontWeight: FontWeight.bold),
+                      style:
+                          TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                       textAlign: TextAlign.left,
                     )),
                 SizedBox(
@@ -134,15 +140,15 @@ class FresherJobs extends StatelessWidget {
                     alignment: Alignment.centerLeft,
                     child: Text(
                       'Upcoming Fresher Jobs (1)',
-                      style: TextStyle(
-                          fontSize: 16, fontWeight: FontWeight.bold),
+                      style:
+                          TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                       textAlign: TextAlign.left,
                     )),
                 SizedBox(
                   height: screenHeight * 0.03, // 3% of screen height
                 ),
                 OpportunityCard(
-                  dp: Image.asset('images/Rectangle 57.png'),
+                  dp: Image.asset('imagesa/Rectangle 57.png'),
                   role: 'Full Stack Developer',
                   company: 'Hiremi',
                   location: 'Bhopal, Madhya Pradesh, India',

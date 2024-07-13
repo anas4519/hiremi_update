@@ -46,9 +46,30 @@ class ProfileScreen extends StatelessWidget {
   ];
   @override
   Widget build(BuildContext context) {
+    var screenWidth = MediaQuery.of(context).size.width;
+
     return Scaffold(
       backgroundColor: AppColors.white,
       appBar: AppBar(
+        leading: Padding(
+            padding: EdgeInsets.all(screenWidth * 0.02),
+            child: Builder(builder: (context) {
+              return GestureDetector(
+                onTap: () {
+                  Scaffold.of(context).openDrawer();
+                },
+                child: Container(
+                    padding: EdgeInsets.all(Sizes.responsiveSm(context)),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(screenWidth * 0.02),
+                      color: AppColors.bgBlue,
+                    ),
+                    child: const Icon(
+                      Icons.notes_rounded,
+                      size: 22,
+                    )),
+              );
+            })),
         title: const Text(
           'Profile',
           style: TextStyle(fontWeight: FontWeight.bold),
@@ -56,11 +77,14 @@ class ProfileScreen extends StatelessWidget {
         centerTitle: true,
         actions: [
           IconButton(
-              onPressed: () {
-                Navigator.of(context).push(
-                    MaterialPageRoute(builder: (ctx) => NotificationScreen()));
-              },
-              icon: const Icon(Icons.notifications))
+            onPressed: () {
+              Navigator.of(context).push(
+                  MaterialPageRoute(builder: (ctx) => const NotificationScreen()));
+            },
+            icon: const Icon(Icons.notifications_outlined),
+            style: ButtonStyle(
+                backgroundColor: WidgetStatePropertyAll(AppColors.bgBlue)),
+          )
         ],
       ),
       drawer: const Drawer(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hiremi_version_two/Utils/colors.dart';
 
 class NotificationScreen extends StatelessWidget {
   const NotificationScreen({Key? key, }) : super(key: key);
@@ -18,9 +19,13 @@ class NotificationScreen extends StatelessWidget {
         actions: [
           IconButton(
             onPressed: () {
-              Navigator.of(context).pop();
+              
             },
-            icon: const Icon(Icons.notifications),
+             icon: const Icon(Icons.notifications),
+             color: AppColors.primary,
+            style: ButtonStyle(
+              backgroundColor: WidgetStatePropertyAll(AppColors.bgBlue)
+            ),
           ),
         ],
       ),

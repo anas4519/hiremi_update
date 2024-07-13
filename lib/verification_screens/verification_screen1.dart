@@ -17,7 +17,6 @@ final _formKey = GlobalKey<FormState>();
   String? _selectedState;
   DateTime? _selectedDate;
 
-  // List<String> _states = ['State 1', 'State 2', 'State 3', 'State 4'];
 
   final List<String> _states = [
     'Andhra Pradesh',

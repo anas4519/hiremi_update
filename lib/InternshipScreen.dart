@@ -3,6 +3,7 @@ import 'package:hiremi_version_two/Custom_Widget/OppurtunityCard.dart';
 
 
 import 'package:hiremi_version_two/Notofication_screen.dart';
+import 'package:hiremi_version_two/Utils/colors.dart';
 
 class InternshipsScreen extends StatelessWidget {
   //const InternshipsScreen({super.key, required this.isVerified});
@@ -24,11 +25,17 @@ class InternshipsScreen extends StatelessWidget {
         centerTitle: true,
         actions: [
           IconButton(
-              onPressed: () {
-                Navigator.of(context).push(
-                    MaterialPageRoute(builder: (ctx) => const NotificationScreen()));
-              },
-              icon: const Icon(Icons.notifications))
+            onPressed: () {
+              Navigator.of(context).push(MaterialPageRoute(
+                builder: (ctx) => const NotificationScreen(),
+              ));
+            },
+            icon: const Icon(Icons.notifications_outlined),
+            style: ButtonStyle(
+              backgroundColor: WidgetStatePropertyAll(AppColors.bgBlue)
+              
+            ),
+          ),
         ],
       ),
       body: SingleChildScrollView(

@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hiremi_version_two/Custom_Widget/Custom_alert_box.dart';
+import 'package:hiremi_version_two/Custom_Widget/drawer_child.dart';
+import 'package:hiremi_version_two/Utils/AppSizes.dart';
+import 'package:hiremi_version_two/Utils/colors.dart';
 
 class QueriesScreen extends StatefulWidget {
   final bool isVerified;
@@ -47,14 +50,38 @@ class _QueriesScreenState extends State<QueriesScreen> {
           "Queries",
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
-        leading: IconButton(onPressed: () {}, icon: const Icon(Icons.menu)),
+        leading: Padding(
+            padding: EdgeInsets.all(screenWidth * 0.02),
+            child: Builder(builder: (context) {
+              return GestureDetector(
+                onTap: () {
+                  Scaffold.of(context).openDrawer();
+                },
+                child: Container(
+                    padding: EdgeInsets.all(Sizes.responsiveSm(context)),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(screenWidth * 0.02),
+                      color: AppColors.bgBlue,
+                    ),
+                    child: const Icon(
+                      Icons.notes_rounded,
+                      size: 22,
+                    )),
+              );
+            })),
         centerTitle: true,
         actions: [
           IconButton(
             onPressed: () {},
-            icon: const Icon(Icons.notifications),
+            icon: const Icon(Icons.notifications_outlined),
+            style: ButtonStyle(
+                backgroundColor: WidgetStatePropertyAll(AppColors.bgBlue)),
           ),
         ],
+      ),
+      drawer: const Drawer(
+        backgroundColor: Colors.white,
+        child: DrawerChild(),
       ),
       body: Padding(
         padding: EdgeInsets.all(screenWidth * 0.02),

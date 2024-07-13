@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hiremi_version_two/Notofication_screen.dart';
+import 'package:hiremi_version_two/Utils/colors.dart';
 import 'package:hiremi_version_two/bottomnavigationbar.dart';
 
 
@@ -22,10 +23,15 @@ class VerifiedPage extends StatelessWidget {
           IconButton(
             onPressed: () {
               Navigator.of(context).push(MaterialPageRoute(
-                  builder: (ctx) => const NotificationScreen()));
+                builder: (ctx) => const NotificationScreen(),
+              ));
             },
-            icon: const Icon(Icons.notifications),
-          )
+            icon: const Icon(Icons.notifications_outlined),
+            style: ButtonStyle(
+              backgroundColor: WidgetStatePropertyAll(AppColors.bgBlue)
+              
+            ),
+          ),
         ],
       ),
       body: Center(

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:hiremi_version_two/Custom_Widget/drawer_child.dart';
 import 'package:hiremi_version_two/InternshipScreen.dart';
 import 'package:hiremi_version_two/Notofication_screen.dart';
+import 'package:hiremi_version_two/Utils/AppSizes.dart';
+import 'package:hiremi_version_two/Utils/colors.dart';
 import 'package:hiremi_version_two/experienced_jobs.dart';
 import 'package:hiremi_version_two/fresherJobs.dart';
 
@@ -20,6 +22,28 @@ class _AppliesScreenState extends State<AppliesScreen> {
     final screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
       appBar: AppBar(
+        leading: Padding(
+        padding: EdgeInsets.all(screenWidth*0.02),
+        child: Builder(
+          builder: (context) {
+            return GestureDetector(
+              onTap: () {
+                Scaffold.of(context).openDrawer();
+              },
+              child: Container(
+                  padding: EdgeInsets.all(Sizes.responsiveSm(context)),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(screenWidth*0.02),
+                    color: AppColors.bgBlue,
+                  ),
+                  child: const Icon(
+                    Icons.notes_rounded,
+                    size: 22,
+                  )),
+            );
+          }
+        )
+        ),
         backgroundColor: Colors.white,
         title: const Text(
           "Applies",
@@ -32,7 +56,10 @@ class _AppliesScreenState extends State<AppliesScreen> {
             onPressed: () {
               Navigator.of(context).push(MaterialPageRoute(builder: (ctx)=>const NotificationScreen()));
             },
-            icon: const Icon(Icons.notifications),
+             icon: const Icon(Icons.notifications_outlined),
+            style: ButtonStyle(
+              backgroundColor: WidgetStatePropertyAll(AppColors.bgBlue)
+            ),
           ),
         ],
       ),

@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:hiremi_version_two/Notofication_screen.dart';
+import 'package:hiremi_version_two/Utils/colors.dart';
 
 class Experienced_Jobs extends StatefulWidget {
-  const Experienced_Jobs({Key? key, }) : super(key: key);
+  const Experienced_Jobs({
+    Key? key,
+  }) : super(key: key);
 
   @override
   State<Experienced_Jobs> createState() => _Experienced_JobsState();
 }
 
 class _Experienced_JobsState extends State<Experienced_Jobs> {
-
   @override
   Widget build(BuildContext context) {
     final screenHeight = MediaQuery.of(context).size.height;
@@ -19,12 +22,17 @@ class _Experienced_JobsState extends State<Experienced_Jobs> {
           "Experienced Jobs",
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
-        
         centerTitle: true,
         actions: [
           IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.notifications),
+            onPressed: () {
+              Navigator.of(context).push(MaterialPageRoute(
+                builder: (ctx) => const NotificationScreen(),
+              ));
+            },
+            icon: const Icon(Icons.notifications_outlined),
+            style: ButtonStyle(
+                backgroundColor: WidgetStatePropertyAll(AppColors.bgBlue)),
           ),
         ],
       ),
@@ -35,7 +43,9 @@ class _Experienced_JobsState extends State<Experienced_Jobs> {
             child: Image.asset('images/Frame 110.png'),
           ),
           Image.asset('images/Team work-bro.png'),
-          SizedBox(height: screenHeight*0.01,),
+          SizedBox(
+            height: screenHeight * 0.01,
+          ),
           const Text(
             'Hiremi’s Recruiters are planning for new jobs',
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17.0),
@@ -46,7 +56,6 @@ class _Experienced_JobsState extends State<Experienced_Jobs> {
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17.0),
             textAlign: TextAlign.center,
           ),
-
         ],
       ),
     );

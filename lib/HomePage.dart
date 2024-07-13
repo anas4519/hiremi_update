@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 import 'package:hiremi_version_two/Custom_Widget/Circle_row.dart';
@@ -17,9 +16,6 @@ import 'package:hiremi_version_two/Utils/AppSizes.dart';
 import 'package:hiremi_version_two/Utils/colors.dart';
 import 'package:hiremi_version_two/experienced_jobs.dart';
 import 'package:hiremi_version_two/fresherJobs.dart';
-
-
-
 
 class HomePage extends StatefulWidget {
   final bool isVerified;
@@ -54,7 +50,8 @@ class _HomePageState extends State<HomePage> {
   void _onScroll() {
     double offset = _scrollController.offset;
     setState(() {
-      _blurAmount = (10 - (offset / 10)).clamp(0, 10); // Adjust blur amount based on scroll
+      _blurAmount = (10 - (offset / 10))
+          .clamp(0, 10); // Adjust blur amount based on scroll
     });
   }
 
@@ -72,28 +69,32 @@ class _HomePageState extends State<HomePage> {
 
     return Scaffold(
       backgroundColor: Colors.white,
-      
       appBar: AppBar(
         backgroundColor: Colors.white,
-        // leading: Padding(
-        // padding: EdgeInsets.all(screenWidth*0.02),
-        // child: GestureDetector(
-        //   onTap: () {
-        //     Scaffold.of(context).openDrawer();
-        //   },
-        //   child: Container(
-        //       padding: EdgeInsets.all(Sizes.responsiveSm(context)),
-        //       decoration: BoxDecoration(
-        //         borderRadius: BorderRadius.circular(8.0),
-        //         color: AppColors.bgBlue,
-        //       ),
-        //       child: const Icon(
-        //         Icons.notes_rounded,
-        //         size: 22,
-        //       )),
-        // )
-        // ),
-        
+        leading: 
+        Padding(
+        padding: EdgeInsets.all(screenWidth*0.02),
+        child: Builder(
+          builder: (context) {
+            return GestureDetector(
+              onTap: () {
+                Scaffold.of(context).openDrawer();
+              },
+              child: Container(
+                  padding: EdgeInsets.all(Sizes.responsiveSm(context)),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(screenWidth*0.02),
+                    color: AppColors.bgBlue,
+                  ),
+                  child: const Icon(
+                    Icons.notes_rounded,
+                    size: 22,
+                  )),
+            );
+          }
+        )
+        ),
+
         title: const Text(
           "Hiremi's Home",
           style: TextStyle(fontWeight: FontWeight.bold),
@@ -106,20 +107,31 @@ class _HomePageState extends State<HomePage> {
                 builder: (ctx) => const NotificationScreen(),
               ));
             },
-            icon: const Icon(Icons.notifications),
+            icon: const Icon(Icons.notifications_outlined),
+            style: ButtonStyle(
+              backgroundColor: WidgetStatePropertyAll(AppColors.bgBlue)
+              
+            ),
           ),
         ],
       ),
-      drawer: const Drawer(backgroundColor: Colors.white,child: DrawerChild(),),
-      
+      drawer: const Drawer(
+        backgroundColor: Colors.white,
+        child: DrawerChild(),
+      ),
       body: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.all(screenWidth * 0.04),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              if (!widget.isVerified) const VerificationStatus(percent: percent,),
-              if (widget.isVerified) const VerifiedProfileWidget(name: 'Harsh Pawar', appId: '00011102'),
+              if (!widget.isVerified)
+                const VerificationStatus(
+                  percent: percent,
+                ),
+              if (widget.isVerified)
+                const VerifiedProfileWidget(
+                    name: 'Harsh Pawar', appId: '00011102'),
               SizedBox(height: screenHeight * 0.02),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -154,7 +166,8 @@ class _HomePageState extends State<HomePage> {
                     child: TextButton(
                       onPressed: () {
                         Navigator.of(context).push(MaterialPageRoute(
-                          builder: (ctx) => InternshipsScreen(isVerified: widget.isVerified),
+                          builder: (ctx) =>
+                              InternshipsScreen(isVerified: widget.isVerified),
                         ));
                       },
                       child: Row(
@@ -195,7 +208,10 @@ class _HomePageState extends State<HomePage> {
                     ),
                     child: TextButton(
                       onPressed: () {
-                        Navigator.of(context).push(MaterialPageRoute(builder: (ctx)=>  FresherJobs(isVerified: widget.isVerified,)));
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (ctx) => FresherJobs(
+                                  isVerified: widget.isVerified,
+                                )));
                       },
                       child: Row(
                         children: [
@@ -235,7 +251,8 @@ class _HomePageState extends State<HomePage> {
                     ),
                     child: TextButton(
                       onPressed: () {
-                        Navigator.of(context).push(MaterialPageRoute(builder: (ctx)=>const Experienced_Jobs()));
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (ctx) => const Experienced_Jobs()));
                       },
                       child: Row(
                         children: [
@@ -309,7 +326,9 @@ class _HomePageState extends State<HomePage> {
                 daysPosted: 6,
                 isVerified: widget.isVerified,
               ),
-              const SizedBox(height: 64,)
+              const SizedBox(
+                height: 64,
+              )
             ],
           ),
         ),
